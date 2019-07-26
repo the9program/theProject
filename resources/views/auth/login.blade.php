@@ -1,73 +1,159 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-40 mt-40">
+                    <h4 class="text-gray mt-0 pt-5">{{ __('personal/login.welcome') }}</h4>
+                    <hr>
+                    <p>{{ __('personal/login.identity') }}</p>
+                    <form  method="POST" >
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="row">
+                            @include('layouts.input',[
+                              'width' => "col-md-12",
+                              'label' => ucfirst(__('validation.attributes.email')) . '* :',
+                              'type'  => "email",
+                              'name'  => "email",
+                              'value' => old('email'),
+                              'attribute' => "required",
+                          ])
+                        </div>
+                        <div class="row">
+                            @include('layouts.input',[
+                                'width' => "col-md-12",
+                                'label' => ucfirst(__('validation.attributes.password')) . '* :',
+                                'type'  => "password",
+                                'name'  => "password",
+                                'value' => old('password'),
+                                'attribute' => "required",
+                            ])
+                        </div>
+                        <div class="checkbox pull-left mt-15">
+                            <label for="form_checkbox">
+                                <input id="form_checkbox" name="remember" type="checkbox">
+                                {{ __('personal/login.still_connect') }}
+                            </label>
+                        </div>
+                        <div class="form-group pull-right mt-10 pb-40">
+                            <a class="text-theme-colored font-weight-600 font-12"
+                               href="{{ route('password.request') }}"> {{ __('personal/login.forgot') }}</a>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                        <div class="clear text-center pt-40">
+                            <button type="submit" class="btn btn-dark btn-lg btn-block no-border mt-15 mb-15"
+                                    href="home.html"> {{ __('personal/login.login') }}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Register -->
+                <div class="col-md-7 col-md-offset-1">
+                    <form name="reg-form" action="{{ route('register') }}" class="register-form" method="post">
+                        @csrf
+                        <div class="icon-box mb-0 p-0">
+                            <a href="#" class="icon icon-bordered icon-rounded icon-sm pull-left mb-0 mr-10">
+                                <i class="pe-7s-users"></i>
+                            </a>
+                            <h4 class="text-gray pt-10 mt-0 mb-30">{{ __('personal/register.have_not') }}</h4>
+                        </div>
+                        <hr>
+                        <p class="text-gray">{{ __('personal/register.register_now') }}</p>
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        <div class="row">
+                            @include('layouts.input',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.last_name')) . '* :',
+                                'type'  => "text",
+                                'name'  => "last_name",
+                                'value' => old('last_name'),
+                                'attribute' => "required",
+                            ])
+                            @include('layouts.input',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.first_name')) . '* :',
+                                'type'  => "text",
+                                'name'  => "first_name",
+                                'value' => old('first_name'),
+                                'attribute' => "required",
+                            ])
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="row">
+                            @include('layouts.gender',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.gender')) . '* :',
+                                'name'  => "gender",
+                                'value' => old('gender'),
+                                'attribute' => "required",
+                            ])
+                            @include('layouts.input',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.birth')) . '* :',
+                                'type'  => "date",
+                                'name'  => "birth",
+                                'value' => old('birth'),
+                                'attribute' => "required",
+                            ])
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                        <div class="row">
+                            <!-- PHONES -->
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
+                            @include('layouts.input',[
+                                'width' => "col-xs-12",
+                                'label' => ucfirst(__('validation.attributes.mobile')) . '* :',
+                                'type'  => "tel",
+                                'name'  => "mobile",
+                                'value' => old('mobile'),
+                                'attribute' => "required",
+                            ])
+                        </div>
+
+                        <div class="row">
+
+                            @include('layouts.input',[
+                              'width' => "col-md-12",
+                              'label' => ucfirst(__('validation.attributes.email')) . '* :',
+                              'type'  => "email",
+                              'name'  => "email",
+                              'value' => old('email'),
+                              'attribute' => "required",
+                          ])
+
+                        </div>
+
+                        <div class="row">
+
+                            @include('layouts.input',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.password')) . '* :',
+                                'type'  => "password",
+                                'name'  => "password",
+                                'value' => old('password'),
+                                'attribute' => "required",
+                            ])
+
+                            @include('layouts.input',[
+                                'width' => "col-md-6",
+                                'label' => ucfirst(__('validation.attributes.password_confirmation')) . '* :',
+                                'type'  => "password",
+                                'name'  => "password_confirmation",
+                                'value' => old('password_confirmation'),
+                                'attribute' => "required",
+                            ])
+
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-dark btn-lg btn-block mt-15"
+                                    type="submit">{{ __('personal/register.register') }}
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 @endsection

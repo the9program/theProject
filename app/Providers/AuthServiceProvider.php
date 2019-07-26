@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Policies\TokenPolicy;
+use App\Token;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
+        Token::class =>TokenPolicy::class,
     ];
 
     /**

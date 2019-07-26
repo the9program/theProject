@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             CategoriesTableSeeder::class,
             LanguagesTableSeeder::class,
             CitiesTableSeeder::class,
-            SpecialtiesTableSeeder::class
+            SpecialtiesTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

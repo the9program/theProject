@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $real_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property string $full_address
  * @property City $city
  * @property Real $real
  * @property Doctor $doctor
@@ -27,6 +28,20 @@ class Address extends Model
     protected $fillable = [
         'default', 'address', 'build', 'floor', 'apt_nbr', 'zip', 'city_id', 'real_id'
     ];
+
+    public function getFullAddressAttribute()
+    {
+
+        $return =  $this->build . ', ' . $this->address . ', ';
+
+        if($this->floor){
+            $return .= __('validation.attributes.floor') . ' : ' . $this->floor . ', ' . __('validation.attributes.apt_nbr') . ' : ' . $this->apt_nbr . '. ';
+        }
+
+        $return .=  $this->city->city;
+
+        return $return;
+    }
 
     public function city()
     {

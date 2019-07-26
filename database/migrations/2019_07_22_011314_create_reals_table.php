@@ -17,9 +17,9 @@ class CreateRealsTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->boolean('gender')->default(true);
-            $table->date('birth');
+            $table->date('birth')->nullable();
 
-            $table->unsignedBigInteger('user_id')->index()->unique();
+            $table->unsignedBigInteger('user_id')->index()->unique()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();

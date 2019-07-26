@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Notifications\Personal\ResetPasswordNotification;
 use Carbon\Carbon;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,13 +13,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property int $id
  * @property string $email
  * @property string $password
+ * @property string $avatar
  * @property Carbon $email_verified_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property int $category_id
- * @property Category $category
  * @property int $language_id
+ * @property int $creator_id
+ * @property Category $category
  * @property Language $language
+ * @property User $creator
  * @property Real $real
  * @property Doctor $doctor
  * @property Doctor $doctors_created
@@ -25,12 +30,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Form $form
  * @property Form $forms_created
  */
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
     protected $fillable = [
-        'email', 'password', 'email_verified_at', 'category_id', 'language_id'
+        'avatar', 'email', 'password',
+        'email_verified_at',
+        'category_id', 'language_id', 'creator_id'
     ];
 
     protected $hidden = [
@@ -79,6 +86,17 @@ class User extends Authenticatable
     public function forms_created()
     {
         return $this->hasMany(Form::class);
+    }
+
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
     }
 
 
