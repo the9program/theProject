@@ -23,7 +23,7 @@ class DoctorController extends Controller
 
         $this->authorize('index',Doctor::class);
 
-        $doctors = Doctor::all();
+        $doctors = Doctor::paginate(15);
 
         return view('doctor.index',compact('doctors'));
 

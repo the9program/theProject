@@ -37,9 +37,9 @@ class DoctorRequest extends FormRequest
             'mobile'        => ['required', 'string', 'max:10', 'min:10', new PhoneRule()],
             'specialty'     => ['required', 'int', 'exists:specialties,id'],
             'address'       => ['required', 'string', 'max:255'],
-            'build'         => ['required', 'int'],
-            'floor'         => ['nullable', 'int', 'max:1000'],
-            'apt_nbr'       => ['required_with:floor', 'max:10000'],
+            'build'         => ['required', 'int', 'min:1',],
+            'floor'         => ['nullable', 'int', 'min:1', 'max:1000'],
+            'apt_nbr'       => ['required_with:floor', 'min:1', 'max:10000'],
             'zip'           => ['nullable', 'int', 'max:10000000000'],
             'city_id'       => ['required', 'int', 'exists:cities,id']
         ];

@@ -39,16 +39,16 @@
                                     <div class="col-sm-4 pr-0 pr-sm-15">
                                         <div class="thumb p-15">
                                             <img class="img-fullwidth" src="{{ asset('images/doctor.jpg') }}"
-                                                 title="{{ $doctor->real->full_name }}"
-                                                 alt="{{ $doctor->real->full_name }}">
+                                                 title="{{ $doctor->full_name }}"
+                                                 alt="{{ $doctor->full_name }}">
                                         </div>
                                     </div>
                                     <div class="col-sm-4 pl-0 pl-sm-15">
                                         <div class="event-details p-15 mt-20">
                                             <h4 class="media-heading text-uppercase font-weight-500">
-                                                <a href="{{ route('doctor.show',compact('doctor')) }}">{{ $doctor->real->full_name }}</a></h4>
-                                            <span class="text-muted">{{ ($doctor->real->gender) ? 'Homme' : 'femme' }}</span>
-                                            <p>{{ $doctor->real->phones[0]->phone }}</p>
+                                                <a href="{{ route('doctor.show',compact('doctor')) }}">{{ $doctor->full_name }}</a></h4>
+                                            <span class="text-muted">{{ ($doctor->gender) ? 'Homme' : 'femme' }}</span>
+                                            <p>{{ $doctor->phone }}</p>
                                             <p>{{ $doctor->specialty->specialty }}</p>
                                         </div>
                                     </div>
@@ -59,7 +59,7 @@
                                                     {{ \Carbon\Carbon::parse($doctor->created_at)->format('d - m - y') }}
                                                 </li>
                                                 <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>
-                                                    {{ $doctor->real->addresses[0]->full_address }}
+                                                    {{ $doctor->address->full_address }}
                                                 </li>
                                             </ul>
                                         </div>
