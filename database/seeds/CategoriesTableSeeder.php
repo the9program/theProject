@@ -9,7 +9,12 @@ class CategoriesTableSeeder extends Seeder
     public function run()
     {
         $categories = [
-            'administrator', 'ceo', 'manager', 'moderator', 'doctor', 'assistant'
+            'administrator',
+            'ceo',
+            'manager',
+            'moderator',
+            'doctor',
+            'assistant'
         ];
 
         foreach ($categories as $category) {

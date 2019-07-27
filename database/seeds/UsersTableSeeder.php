@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'gender'        => 1,
             'birth'         => \Carbon\Carbon::parse('1987-07-20')->format('Y-m-d'),
             'mobile'        => "0657834565",
-            'default'       => true
+            'default'       => true,
             ],1);
     }
 }

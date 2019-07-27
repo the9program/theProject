@@ -51,7 +51,20 @@ class CreateDoctorsTable extends Migration
                 ->nullable();
             $table->foreign('opening_id')
                 ->references('id')
-                ->on('opening_id');
+                ->on('openings');
+
+            $table->unsignedBigInteger('creator_id')
+                ->index();
+            $table->foreign('creator_id')
+                ->references('id')
+                ->on('users');
+
+            $table->unsignedBigInteger('user_id')
+                ->index()
+                ->nullable();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
 
 
             $table->timestamps();
@@ -82,7 +95,10 @@ class CreateDoctorsTable extends Migration
     public function down()
     {
 
+        Schema::dropIfExists('openings');
+
         Schema::dropIfExists('doctors');
+
         Schema::dropIfExists('doctor_language');
 
     }

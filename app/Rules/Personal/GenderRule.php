@@ -10,7 +10,7 @@ class GenderRule implements Rule
     public function passes($attribute, $value)
     {
 
-        return $value === '1' || $value === 0;
+        return $value === '1' || $value === '0';
 
     }
 

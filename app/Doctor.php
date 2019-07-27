@@ -24,8 +24,15 @@ use Illuminate\Database\Eloquent\Model;
 class Doctor extends Model
 {
     protected $fillable = [
-        'last_name', 'first_name', 'phone', 'visit', 'specialty_id', 'address_id', 'creator_id', 'user_id'
+        'last_name', 'first_name', 'phone',
+        'visit', 'specialty_id', 'address_id',
+        'opening_id' ,'creator_id', 'user_id',
     ];
+
+    public function getFullNameAttribute()
+    {
+        return 'last';
+    }
 
     public function specialty()
     {

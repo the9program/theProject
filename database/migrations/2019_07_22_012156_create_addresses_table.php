@@ -26,7 +26,9 @@ class CreateAddressesTable extends Migration
                 ->references('id')
                 ->on('cities');
 
-            $table->unsignedBigInteger('real_id')->index()->nullable();
+            $table->unsignedBigInteger('real_id')
+                ->index()
+                ->nullable();
             $table->foreign('real_id')
                 ->references('id')
                 ->on('reals ');

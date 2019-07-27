@@ -17,7 +17,7 @@
                                 'label' => ucfirst(__('validation.attributes.last_name')) . '* :',
                                 'type'  => "text",
                                 'name'  => "last_name",
-                                'value' => (old('last_name')) ? old('last_name') : $doctor->real->last_name,
+                                'value' => (old('last_name')) ? old('last_name') : $doctor->last_name,
                                 'attribute' => "required",
                             ])
                             @include('layouts.input',[
@@ -25,7 +25,7 @@
                                 'label' => ucfirst(__('validation.attributes.first_name')) . '* :',
                                 'type'  => "text",
                                 'name'  => "first_name",
-                                'value' => (old('first_name')) ? old('first_name') : $doctor->real->first_name,
+                                'value' => (old('first_name')) ? old('first_name') : $doctor->first_name,
                                 'attribute' => "required",
                             ])
                         </div>
@@ -37,7 +37,7 @@
                                 'width' => "col-md-6",
                                 'label' => ucfirst(__('validation.attributes.gender')) . '* :',
                                 'name'  => "gender",
-                                'value' => (old('gender')) ? old('gender') : $doctor->real->gender,
+                                'value' => (old('gender')) ? old('gender') : $doctor->gender,
                                 'attribute' => "required",
                             ])
                             @include('layouts.input',[
@@ -45,7 +45,7 @@
                                  'label' => ucfirst(__('validation.attributes.mobile')) . '* :',
                                  'type'  => "tel",
                                  'name'  => "mobile",
-                                'value' => (old('mobile')) ? old('mobile') : $doctor->real->phones[0]->phone,
+                                'value' => (old('mobile')) ? old('mobile') : $doctor->phone,
                                  'attribute' => "required",
                              ])
                         </div>
@@ -58,7 +58,7 @@
                             'label' => ucfirst(__('validation.attributes.address')) . '* :',
                             'type'  => "text",
                             'name'  => "address",
-                            'value' => (old('address')) ? old('address') : $doctor->real->addresses[0]->address,
+                            'value' => (old('address')) ? old('address') : $doctor->address->address,
                             'attribute' => "required",
                         ])
                         </div>
@@ -68,7 +68,7 @@
                             'label' => ucfirst(__('validation.attributes.build')) . '* :',
                             'type'  => "number",
                             'name'  => "build",
-                            'value' => (old('build')) ? old('build') : $doctor->real->addresses[0]->build,
+                            'value' => (old('build')) ? old('build') : $doctor->address->build,
                             'attribute' => "required",
                         ])
                             @include('layouts.input',[
@@ -76,7 +76,7 @@
                             'label' => ucfirst(__('validation.attributes.floor')) . ' :',
                             'type'  => "number",
                             'name'  => "floor",
-                            'value' => (old('floor')) ? old('floor') : $doctor->real->addresses[0]->floor,
+                            'value' => (old('floor')) ? old('floor') : $doctor->address->floor,
                             'attribute' => "",
                         ])
                             @include('layouts.input',[
@@ -84,7 +84,7 @@
                             'label' => ucfirst(__('validation.attributes.apt_nbr')) . ' :',
                             'type'  => "number",
                             'name'  => "apt_nbr",
-                            'value' => (old('apt_nbr')) ? old('apt_nbr') : $doctor->real->addresses[0]->apt_nbr,
+                            'value' => (old('apt_nbr')) ? old('apt_nbr') : $doctor->address->apt_nbr,
                             'attribute' => "",
                         ])
 
@@ -95,12 +95,12 @@
                             'label' => ucfirst(__('validation.attributes.zip')) . ' :',
                             'type'  => "number",
                             'name'  => "zip",
-                            'value' => (old('zip')) ? old('zip') : $doctor->real->addresses[0]->zip,
+                            'value' => (old('zip')) ? old('zip') : $doctor->address->zip,
                             'attribute' => "",
                         ])
                             @include('layouts.city',[
                             'width' => "col-md-6",
-                            'city'  => $doctor->real->addresses[0]->city
+                            'city'  => $doctor->address->city
                         ])
                         </div>
                         <!-- \Address -->

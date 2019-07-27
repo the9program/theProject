@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Directory;
 
 use App\Rules\Personal\GenderRule;
-use App\Rules\Personal\MobileRule;
+use App\Rules\PhoneRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
@@ -34,7 +34,7 @@ class DoctorRequest extends FormRequest
             'last_name'     => ['required', 'string', 'min:3', 'max:8'],
             'first_name'    => ['required', 'string', 'min:3', 'max:8'],
             'gender'        => ['required', 'int', new GenderRule()],
-            'mobile'        => ['required', 'string', 'max:10', 'min:10', new MobileRule()],
+            'mobile'        => ['required', 'string', 'max:10', 'min:10', new PhoneRule()],
             'specialty'     => ['required', 'int', 'exists:specialties,id'],
             'address'       => ['required', 'string', 'max:255'],
             'build'         => ['required', 'int'],

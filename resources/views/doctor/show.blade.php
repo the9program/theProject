@@ -8,11 +8,11 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h2 class="title">{{ $doctor->real->full_name }}</h2>
+                        <h2 class="title">{{ $doctor->full_name }}</h2>
                         <ol class="breadcrumb text-center text-black mt-10">
                             <li><a href="#">Home</a></li>
                             <li><a href="{{ route('doctor.index') }}">{{ __('directory/doctor.doctors') }}</a></li>
-                            <li class="active text-theme-colored">{{ $doctor->real->full_name }}</li>
+                            <li class="active text-theme-colored">{{ $doctor->full_name }}</li>
                         </ol>
                     </div>
                 </div>
@@ -47,15 +47,15 @@
                             <div class="col-sm-4 pr-0 pr-sm-15">
                                 <div class="thumb p-15">
                                     <img class="img-fullwidth" src="{{ asset('images/doctor.jpg') }}"
-                                         title="{{ $doctor->real->full_name }}"
-                                         alt="{{ $doctor->real->full_name }}">
+                                         title="{{ $doctor->full_name }}"
+                                         alt="{{ $doctor->full_name }}">
                                 </div>
                             </div>
                             <div class="col-sm-4 pl-0 pl-sm-15">
                                 <div class="event-details p-15 mt-20">
-                                    <h4 class="media-heading text-uppercase font-weight-500">{{ $doctor->real->full_name }}</h4>
-                                    <span class="text-muted">{{ __('personal/gender.' . $doctor->real->gender) }}</span>
-                                    <p>{{ $doctor->real->phones[0]->phone }}</p>
+                                    <h4 class="media-heading text-uppercase font-weight-500">{{ $doctor->full_name }}</h4>
+                                    <span class="text-muted">{{ __('personal/gender.' . $doctor->gender) }}</span>
+                                    <p>{{ $doctor->phone }}</p>
                                     <p>{{ $doctor->specialty->specialty }}</p>
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
                                             {{ \Carbon\Carbon::parse($doctor->created_at)->format('d - m - y') }}
                                         </li>
                                         <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>
-                                            {{ $doctor->real->addresses[0]->full_address }}
+                                            {{ $doctor->address->full_address }}
                                         </li>
 
                                         @can('create',\App\Doctor::class)

@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $user_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property string $full_name
  * @property User $user
  * @property Address $addresses
  * @property Phone $phones
@@ -42,6 +43,11 @@ class Real extends Model
     public function phones()
     {
         return $this->hasMany(Phone::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return strtoupper($this->last_name)  . ' ' . ucfirst($this->first_name);
     }
 
 }
