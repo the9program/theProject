@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Language $languages
  * @property string $full_name
  * @property Joint $joint
+ * @property Experience $experiences
  */
 class Doctor extends Model
 {
@@ -63,5 +64,10 @@ class Doctor extends Model
     public function joint()
     {
         return $this->hasOne(Joint::class);
+    }
+
+    public function experiences()
+    {
+        return $this->hasMany(Experience::class);
     }
 }

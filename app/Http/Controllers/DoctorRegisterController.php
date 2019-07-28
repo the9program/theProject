@@ -50,6 +50,7 @@ class DoctorRegisterController extends Controller
         $user = $doctor->user()->create([
             'email'             => $request->email,
             'remember_token'    => $token,
+            'category_id'       => 5,
             'creator_id'        => auth()->id()
         ]);
 
@@ -98,7 +99,7 @@ class DoctorRegisterController extends Controller
 
         session()->flash('success', 'Votre Compte a bien été créer veuillez vous conécté');
 
-        return redirect('login')->route('login');
+        return redirect()->route('login');
 
     }
 }

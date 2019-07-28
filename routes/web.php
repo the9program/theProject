@@ -86,3 +86,22 @@ Route::get('doctor/{doctor}/create','DoctorRegisterController@create')->name('do
 Route::post('doctor/{doctor}/create','DoctorRegisterController@store')->name('doctor.register.create');
 Route::get('register/{doctor}/{token}','DoctorRegisterController@registerForm')->name('presence.registerForm');
 Route::post('register/{doctor}','DoctorRegisterController@register')->name('presence.register');
+
+
+Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
+    // language
+
+    Route::resource('languages','LanguageController')
+        ->only(['create', 'store']);
+
+    // experience and study
+
+    Route::middleware(['doctor','doctor_language'])
+        ->resource('study','StudyController')
+        ->except(['show']);
+
+    Route::middleware(['doctor','doctor_language','study'])
+        ->resource('experience','ExperienceController')
+        ->except(['show']);
+
+});
