@@ -61,7 +61,9 @@ class AvailabilityController extends Controller
     public function show(Availability $availability)
     {
 
-        dd($availability->appointments);
+        $this->authorize('availability',Availability::class);
+
+        return view('appointment.availability.show',['appointments' => $availability->appointments]);
 
     }
 

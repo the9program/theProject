@@ -109,8 +109,16 @@ Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
 
 });
 
-// availability
+Route::namespace('Appointment')->group(function (){
+    // availability
 
-Route::resource('availability','Appointment\AvailabilityController')
-            ->only(['index', 'create', 'store','show']);
+    Route::middleware('auth')->resource('availability','AvailabilityController')
+        ->only(['index', 'create', 'store', 'show']);
+
+    // appointment
+
+    Route::resource('appointment','AppointmentController')->except(['create','store']);
+    Route::get('appointment/{appointment}/passed','AppointmentController@passed')->name('appointment.passed');
+
+});
 

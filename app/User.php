@@ -85,7 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function forms_created()
     {
-        return $this->hasMany(Form::class);
+        return $this->hasMany(Form::class,'creator_id');
     }
 
 
