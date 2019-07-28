@@ -82,10 +82,10 @@
                                 <div class="col-sm-4 pl-0 pl-sm-15">
                                     <div class="event-details p-15 mt-20">
                                         <h4 class="media-heading text-uppercase font-weight-500">
-                                            <a href="{{ route('doctor.show',['doctor' => $search->doctor]) }}">{{ $search->full_name }}</a>
+                                            <a href="{{ route('doctor.show',['doctor' => $search->joint->doctor]) }}">{{ $search->full_name }}</a>
                                         </h4>
-                                        <span class="text-muted">{{ __('personal/gender.' . $search->doctor->real->gender) }}</span>
-                                        <p>{{ $search->doctor->real->phones[0]->phone }}</p>
+                                        <span class="text-muted">{{ __('personal/gender.' . $search->joint->doctor->gender) }}</span>
+                                        <p>{{ $search->joint->doctor->phone }}</p>
                                         <p>{{ $search->specialty->specialty }}</p>
                                     </div>
                                 </div>
@@ -93,10 +93,10 @@
                                     <div class="event-count p-15 mt-15">
                                         <ul>
                                             <li class="text-theme-colored"><i class="fa fa-calendar mr-5"></i>
-                                                {{ \Carbon\Carbon::parse($search->doctor->real->created_at)->format('d - m - y') }}
+                                                {{ \Carbon\Carbon::parse($search->joint->doctor->created_at)->format('d - m - y') }}
                                             </li>
                                             <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>
-                                                {{ $search->doctor->real->addresses[0]->full_address }}
+                                                {{ $search->joint->doctor->address->full_address }}
                                             </li>
                                         </ul>
                                     </div>
@@ -108,5 +108,7 @@
             </div>
         </div>
     </section>
+        @else
+        pas de result
     @endif
 @stop

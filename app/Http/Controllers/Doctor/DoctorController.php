@@ -6,6 +6,7 @@ use App\Address;
 use App\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Directory\DoctorRequest;
+use App\Repository\DoctorRepository;
 
 class DoctorController extends Controller
 {
@@ -38,30 +39,12 @@ class DoctorController extends Controller
 
     }
 
-    public function store(DoctorRequest $request)
+    public function store(DoctorRequest $request, DoctorRepository $repository)
     {
 
         $this->authorize('create',Doctor::class);
 
-        $address = Address::create($request->all([
-            'address', 'build', 'floor', 'apt_nbr', 'zip', 'city_id'
-        ]));
-
-        $doctor = $address->doctor()->create([
-            'last_name'         => $request->last_name,
-            'first_name'        => $request->first_name,
-            'phone'             => $request->mobile,
-            'specialty_id'      => $request->specialty,
-            'creator_id'        => auth()->id(),
-        ]);
-
-        $joint = $doctor->joint()->create();
-
-        $joint->search()->create([
-            'full_name'         => $doctor->full_name,
-            'specialty_id'      => $doctor->specialty_id,
-            'city_id'           => $request->city_id
-        ]);
+        $doctor = $repository->create($request);
 
 
         return redirect()->route('doctor.show',compact('doctor'));

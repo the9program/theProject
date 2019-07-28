@@ -69,12 +69,13 @@ Route::resource('token','Personal\TokenController');
 
 // welcome
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 // doctor
 
 Route::resource('doctor', 'Doctor\DoctorController');
+
+// search
+
+Route::get('search','Directory\SearchController@index')->name('search');
+Route::post('search','Directory\SearchController@search')->name('search.post');
