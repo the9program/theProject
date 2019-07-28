@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
 
         $repository->create([
             'email'         => "email@email.com",
-            'password'      => bcrypt('12345678'),
+            'password'      => '12345678',
             'last_name'     => 'lakhsadi',
             'first_name'    => 'yasser',
             'gender'        => 1,

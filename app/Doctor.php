@@ -20,6 +20,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $creator
  * @property User $user
  * @property Language $languages
+ * @property string $full_name
+ * @property Joint $joint
  */
 class Doctor extends Model
 {
@@ -31,7 +33,7 @@ class Doctor extends Model
 
     public function getFullNameAttribute()
     {
-        return 'last';
+        return strtoupper($this->last_name) . ' '  . ucfirst($this->first_name);
     }
 
     public function specialty()
@@ -56,5 +58,10 @@ class Doctor extends Model
     public function languages()
     {
         return $this->belongsToMany(Language::class);
+    }
+
+    public function joint()
+    {
+        return $this->hasOne(Joint::class);
     }
 }

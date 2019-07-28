@@ -75,4 +75,6 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// doctor
+
 Route::resource('doctor', 'Doctor\DoctorController');

@@ -55,6 +55,14 @@ class DoctorController extends Controller
             'creator_id'        => auth()->id(),
         ]);
 
+        $joint = $doctor->joint()->create();
+
+        $joint->search()->create([
+            'full_name'         => $doctor->full_name,
+            'specialty_id'      => $doctor->specialty_id,
+            'city_id'           => $request->city_id
+        ]);
+
 
         return redirect()->route('doctor.show',compact('doctor'));
 
@@ -70,7 +78,7 @@ class DoctorController extends Controller
     public function edit(Doctor $doctor)
     {
 
-        $this->authorize('update',Doctor::class);
+        $this->authorize('update',$doctor);
 
         return view('doctor.edit', compact('doctor'));
 
@@ -79,7 +87,7 @@ class DoctorController extends Controller
     public function update(DoctorRequest $request, Doctor $doctor)
     {
 
-        $this->authorize('update',Doctor::class);
+        $this->authorize('update',$doctor);
 
         $doctor->address()->update($request->all(['address', 'build', 'floor', 'apt_nbr', 'zip', 'city_id', 'real_id']));
 
@@ -90,6 +98,12 @@ class DoctorController extends Controller
             'specialty_id'      => $request->specialty,
         ]);
 
+        $doctor->joint->search->update([
+            'full_name'         => $doctor->full_name,
+            'specialty_id'      => $doctor->specialty_id,
+            'city_id'           => $request->city_id
+        ]);
+
         return redirect()->route('doctor.show', compact('doctor'));
 
     }
@@ -97,7 +111,11 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
 
-        $this->authorize('update',Doctor::class);
+        $this->authorize('update',$doctor);
+
+        $doctor->joint->search()->delete();
+
+        $doctor->joint()->delete();
 
         $doctor->delete();
 

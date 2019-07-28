@@ -39,7 +39,7 @@ class DoctorRequest extends FormRequest
             'address'       => ['required', 'string', 'max:255'],
             'build'         => ['required', 'int', 'min:1',],
             'floor'         => ['nullable', 'int', 'min:1', 'max:1000'],
-            'apt_nbr'       => ['required_with:floor', 'min:1', 'max:10000'],
+            'apt_nbr'       => ['required_with:floor', 'max:10000'],
             'zip'           => ['nullable', 'int', 'max:10000000000'],
             'city_id'       => ['required', 'int', 'exists:cities,id']
         ];

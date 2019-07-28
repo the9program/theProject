@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property User $assistant
  * @property Clinical $clinical
  * @property Availability $availability
+ * @property Search $search
  */
 class Joint extends Model
 {
@@ -42,6 +43,11 @@ class Joint extends Model
     public function availability()
     {
         return $this->hasMany(Availability::class);
+    }
+
+    public function search()
+    {
+        return $this->hasOne(Search::class);
     }
 
 }
