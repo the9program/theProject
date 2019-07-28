@@ -10,6 +10,10 @@ class DoctorPolicy
 {
     use HandlesAuthorization;
 
+    public function before(User $user)
+    {
+        return ($user->category_id === 1) ? true : null;
+    }
 
     public function index(User $user)
     {
@@ -41,5 +45,13 @@ class DoctorPolicy
 
         return ((!$doctor->user_id) && ($role)) ;
 
+    }
+
+    public function presence(User $user)
+    {
+        return $user->category
+            ->roles()
+            ->where('role','presence_create')
+            ->first();
     }
 }

@@ -28,6 +28,9 @@
                     <a href="{{ route('doctor.edit',compact('doctor')) }}"
                        class="btn btn-border hvr-bounce-to-right btn-theme-colored"
                     >{{ __('directory/doctor.update') }}</a>
+                    <a href="{{ route('doctor.register.create',compact('doctor')) }}"
+                       class="btn btn-border hvr-bounce-to-right btn-theme-colored"
+                    >{{ __('directory/doctor.create') }}</a>
                     <a href="{{ route('doctor.edit',compact('doctor')) }}"
                        class="btn btn-border hvr-bounce-to-right btn-danger"
                        onclick="event.preventDefault();

@@ -10,7 +10,8 @@ class RolesTableSeeder extends Seeder
     {
 
         $roles = [
-            'potential_doctor_list', 'potential_doctor_create', 'potential_doctor_update'
+            'potential_doctor_list', 'potential_doctor_create', 'potential_doctor_update',
+            'presence_create'
         ];
 
         foreach ($roles as $role) {
