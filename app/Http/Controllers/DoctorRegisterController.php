@@ -64,18 +64,19 @@ class DoctorRegisterController extends Controller
 
     }
 
-    public function RegisterForm($doctor, $token)
+    public function RegisterForm(Doctor $doctor,string $token)
     {
-
-        $token = Token::find($token);
-
-        $doctor = Doctor::find($doctor);
 
         return view('presence.register',compact('token','doctor'));
     }
 
     public function register(DoctorRegisterRequest $request, Doctor $doctor)
     {
+       // dd($doctor->user->getRememberToken());
+        if($doctor->user->getRememberToken() != $request->token){
+            session()->flash('warning', 'votre jeton de permission est invalide veuillez cliker sur le mail');
+            return back();
+        }
 
         $doctor->user->update([
             'password'  => bcrypt($request->password)
@@ -93,6 +94,7 @@ class DoctorRegisterController extends Controller
             'first_name'    => $doctor->first_name,
             'gender'        => $request->gender,
             'birth'         => $request->birth,
+            'mobile'        => $request->mobile,
             'creator_id'    => $doctor->user->creator_id
         ]);
 

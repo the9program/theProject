@@ -22,7 +22,7 @@ class Form extends Model
 {
 
     protected $fillable = [
-        'last_name', 'first_name', 'gender', 'birth', 'user_id', 'creator_id'
+        'last_name', 'first_name', 'gender', 'birth', 'mobile', 'user_id', 'creator_id'
     ];
 
     public function user()

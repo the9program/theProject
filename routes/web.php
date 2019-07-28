@@ -80,13 +80,13 @@ Route::resource('doctor', 'Doctor\DoctorController');
 Route::get('search','Directory\SearchController@index')->name('search');
 Route::post('search','Directory\SearchController@search')->name('search.post');
 
+
 // doctor
 
 Route::get('doctor/{doctor}/create','DoctorRegisterController@create')->name('doctor.register.create');
 Route::post('doctor/{doctor}/create','DoctorRegisterController@store')->name('doctor.register.create');
 Route::get('register/{doctor}/{token}','DoctorRegisterController@registerForm')->name('presence.registerForm');
 Route::post('register/{doctor}','DoctorRegisterController@register')->name('presence.register');
-
 
 Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
     // language
@@ -104,4 +104,8 @@ Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
         ->resource('experience','ExperienceController')
         ->except(['show']);
 
+    Route::resource('assistant','AssistantController')
+        ->only(['create','store']);
+
 });
+

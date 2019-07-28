@@ -18,6 +18,7 @@ class CreateFormsTable extends Migration
             $table->string('first_name');
             $table->boolean('gender');
             $table->date('birth');
+            $table->string('mobile');
 
             $table->unsignedBigInteger('user_id')
                 ->index()

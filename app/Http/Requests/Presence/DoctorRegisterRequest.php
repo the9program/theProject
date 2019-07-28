@@ -17,6 +17,7 @@ class DoctorRegisterRequest extends FormRequest
     public function rules()
     {
         return [
+            'token'         => 'required|string|min:3',
             'gender'        => ['required', 'int', new GenderRule()],
             'birth'         => ['required', 'date', new BirthRule()],
             'password'      => ['required', 'string', 'min:8', 'confirmed'],

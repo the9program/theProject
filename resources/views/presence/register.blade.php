@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <section class="divider">
         <div class="container">
             <div class="row">
@@ -11,8 +12,19 @@
                         <blockquote>
                             <p class="font-13">blockquote psw msg</p>
                         </blockquote>
-                        <form method="POST" action="{{ route('presence.register',compact('doctor','token')) }}">
+                        <form method="POST" action="{{ route('presence.register',compact('doctor')) }}">
                             @csrf
+                            <input type="hidden" name="token" value="{{ $token }}">
+                            <div class="row">
+                                @include('layouts.input',[
+                                   'width' => "col-xs-12",
+                                   'label' => ucfirst(__('validation.attributes.mobile')) . '* :',
+                                   'type'  => "tel",
+                                   'name'  => "mobile",
+                                   'value' => old('mobile'),
+                                   'attribute' => "required",
+                               ])
+                            </div>
                             <div class="row">
                                 @include('layouts.input',[
                                     'width' => "col-md-6",
@@ -29,6 +41,8 @@
                                          'value' => old('gender'),
                                          'attribute' => "required",
                                      ])
+                            </div>
+                            <div class="row">
                                 @include('layouts.input',[
                                       'width' => "col-md-6",
                                       'label' => ucfirst(__('validation.attributes.password')) . '* :',
