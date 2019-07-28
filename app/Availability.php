@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property User $user
  * @property Joint $joint
+ * @property Appointment $appointments
  */
 class Availability extends Model
 {
@@ -28,5 +29,10 @@ class Availability extends Model
     public function joint()
     {
         return $this->belongsTo(Joint::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

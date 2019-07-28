@@ -1143,6 +1143,9 @@ var THEMEMASCOT = {};
             if (typeof calendarEvents !== "undefined" ) {
                 var $full_event_calendar = $('#full-event-calendar');
                 if( $full_event_calendar.length > 0 ) {
+                    var today = new Date();
+                    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
                     $full_event_calendar.fullCalendar({
                         header: {
                             left: 'prev,next today',
@@ -1150,7 +1153,7 @@ var THEMEMASCOT = {};
                             right: ''
                         },
                         locale: $('html').attr('lang'),
-                        defaultDate: '2019-05-05',
+                        defaultDate: date,
                         selectable: true,
                         selectHelper: true,
                         dayClick: function(date, jsEvent, view) {

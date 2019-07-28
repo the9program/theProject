@@ -12,7 +12,7 @@ var calendarEvents= [
     {
         title: 'Nom de l\'établissement',
         url: 'week',
-        start: '2019-05-08'
+        start: '2019-07-28'
     }
 
 ];

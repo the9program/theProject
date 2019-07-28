@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Availability;
 use App\Doctor;
+use App\Policies\Appointment\AvailabilityPolicy;
 use App\Policies\DoctorPolicy;
 use App\Policies\TokenPolicy;
 use App\Token;
@@ -18,7 +20,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Token::class =>TokenPolicy::class,
-        Doctor::class => DoctorPolicy::class
+        Doctor::class => DoctorPolicy::class,
+        Availability::class => AvailabilityPolicy::class
     ];
 
     /**

@@ -109,3 +109,8 @@ Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
 
 });
 
+// availability
+
+Route::resource('availability','Appointment\AvailabilityController')
+            ->only(['index', 'create', 'store','show']);
+

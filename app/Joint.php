@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Doctor $doctor
  * @property User $assistant
  * @property Clinical $clinical
- * @property Availability $availability
+ * @property Availability $availabilities
  * @property Search $search
  */
 class Joint extends Model
@@ -40,7 +40,7 @@ class Joint extends Model
         return $this->belongsTo(Clinical::class);
     }
 
-    public function availability()
+    public function availabilities()
     {
         return $this->hasMany(Availability::class);
     }
