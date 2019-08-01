@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             SpecialtiesTableSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,
-            DoctorsSeeder::class
+            DoctorsSeeder::class,
+            RegisterDoctorSeeder::class,
+            AssistantSeeder::class
         ]);
     }
 }

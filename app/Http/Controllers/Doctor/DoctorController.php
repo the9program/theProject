@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Address;
+use App\Availability;
 use App\Doctor;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Directory\DoctorRequest;
 use App\Repository\DoctorRepository;
+use Carbon\Carbon;
 
 class DoctorController extends Controller
 {
@@ -53,8 +55,21 @@ class DoctorController extends Controller
 
     public function show(Doctor $doctor)
     {
+        $av = $doctor->joint->availabilities()->where('from','>',now())
+            ->orderBy('from','asc')
+            ->get();
+        $availabilities = [];
+        foreach ($av as $availability) {
 
-        return view('doctor.show', compact('doctor'));
+            if (!in_array(Carbon::parse($availability->from)->format('Y-m-d'),$availabilities)) {
+
+                $availabilities[] = Carbon::parse($availability->from)->format('Y-m-d');
+
+            }
+
+        }
+
+        return view('doctor.show', compact('doctor','availabilities'));
 
     }
 

@@ -3,7 +3,9 @@ namespace App\Repository;
 
 
 use App\Address;
+use App\Doctor;
 use App\Http\Requests\Directory\DoctorRequest;
+use App\Http\Requests\Presence\DoctorRegisterRequest;
 
 class DoctorRepository
 {
@@ -31,5 +33,28 @@ class DoctorRepository
 
         return $doctor;
 
+    }
+
+    public function register(DoctorRegisterRequest $request, Doctor $doctor)
+    {
+        $doctor->user->update([
+            'password'  => bcrypt($request->password)
+        ]);
+
+        $doctor->user->real()->create([
+            'last_name'     => $doctor->last_name,
+            'first_name'    => $doctor->first_name,
+            'gender'        => $request->gender,
+            'birth'         => $request->birth,
+        ]);
+
+        $doctor->user->form()->create([
+            'last_name'     => $doctor->last_name,
+            'first_name'    => $doctor->first_name,
+            'gender'        => $request->gender,
+            'birth'         => $request->birth,
+            'mobile'        => $request->mobile,
+            'creator_id'    => $doctor->user->creator_id
+        ]);
     }
 }

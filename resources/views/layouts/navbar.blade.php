@@ -3,7 +3,7 @@
         <div class="header-nav-wrapper navbar-scrolltofixed bg-lightest">
             <div class="container">
                 <nav id="menuzord-right" class="menuzord blue bg-lightest">
-                    <a class="menuzord-brand pull-left flip" href="javascript:void(0)">
+                    <a class="menuzord-brand pull-left flip" href="/">
                         <img src="{{ asset('images/logo-wide.png') }}" alt="LY" title="LY">
                     </a>
                     <div id="side-panel-trigger" class="side-panel-trigger"><a href="#"><i
@@ -23,7 +23,7 @@
                                             width="20"
                                             alt=""></a>
                             @endif
-                            <ul class="dropdown" id="lang-switcher">
+                            <ul class="dropdown lang-switcher">
                                 @if(session('locale') == 'ar')
                                     <li>
                                         <a href="#" data-lang="fr" class="text-left">Français <img

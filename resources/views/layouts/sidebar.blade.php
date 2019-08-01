@@ -5,7 +5,7 @@
             <a href="#"><i class="pe-7s-close font-36"></i>
             </a>
         </div>
-        <a href="javascript:void(0)"><img alt="LY" title="LY" src="{{ asset('images/logo-wide.png') }}"></a>
+        <a href="/"><img alt="LY" title="LY" src="{{ asset('images/logo-wide.png') }}"></a>
         <div class="side-panel-nav mt-30">
             <div class="widget no-border">
                 <nav>

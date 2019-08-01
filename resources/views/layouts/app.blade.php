@@ -20,7 +20,8 @@
     <title>Directory</title>
 
 
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+          integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Favicon and Touch Icons -->
     <link href="{{ asset('images/favicon.png') }}" rel="shortcut icon" type="image/png">
@@ -74,6 +75,7 @@
     <![endif]-->
 </head>
 <body class="has-side-panel side-panel-right fullwidth-page side-push-panel">
+
 <!-- MENU -->
 @include('layouts.sidebar')
 <div id="wrapper" class="clearfix">

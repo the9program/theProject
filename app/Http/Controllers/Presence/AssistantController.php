@@ -14,6 +14,7 @@ class AssistantController extends Controller
     {
 
         return view('presence.assistant.create');
+
     }
 
     public function store(AssistantRequest $request)
@@ -37,4 +38,5 @@ class AssistantController extends Controller
 
         return back();
     }
+
 }

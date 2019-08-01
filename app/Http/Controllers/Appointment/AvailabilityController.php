@@ -12,7 +12,9 @@ class AvailabilityController extends Controller
 
     public function index()
     {
+
         $this->authorize('availability',Availability::class);
+
         if (auth()->user()->category_id === 6){
 
             $availabilities = auth()->user()->joint->availabilities;
@@ -69,8 +71,11 @@ class AvailabilityController extends Controller
 
     public function create()
     {
+
         $this->authorize('availability',Availability::class);
+
         return view('appointment.availability.create');
+
     }
 
     public function store(AvailabilityRequest $request)
@@ -105,7 +110,9 @@ class AvailabilityController extends Controller
                 'season' => $seance
             ]);
 
-            $seance = Carbon::parse($seance)->addMinutes(15)->format('Y-m-d H:i:s');
+            $seance = Carbon::parse($seance)
+                ->addMinutes(15)
+                ->format('Y-m-d H:i:s');
         }
     }
 

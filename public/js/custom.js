@@ -1156,11 +1156,6 @@ var THEMEMASCOT = {};
                         defaultDate: date,
                         selectable: true,
                         selectHelper: true,
-                        dayClick: function(date, jsEvent, view) {
-
-                            window.location.href = '/week'
-
-                        },
                         eventLimit: true, // allow "more" link when too many events
                         events: calendarEvents
                     });

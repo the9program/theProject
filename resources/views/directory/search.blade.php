@@ -65,50 +65,50 @@
     </section>
 
     @if(isset($searches[0]))
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    @foreach($searches as $search)
-                        <div class="upcoming-events bg-white-f3 mb-20">
-                            <div class="row">
-                                <div class="col-sm-4 pr-0 pr-sm-15">
-                                    <div class="thumb p-15">
-                                        <img class="img-fullwidth" src="{{ asset('images/doctor.jpg') }}"
-                                             title="{{ $search->full_name }}"
-                                             alt="{{ $search->full_name }}">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        @foreach($searches as $search)
+                            <div class="upcoming-events bg-white-f3 mb-20">
+                                <div class="row">
+                                    <div class="col-sm-4 pr-0 pr-sm-15">
+                                        <div class="thumb p-15">
+                                            <img class="img-fullwidth" src="{{ asset('images/doctor.jpg') }}"
+                                                 title="{{ $search->full_name }}"
+                                                 alt="{{ $search->full_name }}">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4 pl-0 pl-sm-15">
-                                    <div class="event-details p-15 mt-20">
-                                        <h4 class="media-heading text-uppercase font-weight-500">
-                                            <a href="{{ route('doctor.show',['doctor' => $search->joint->doctor]) }}">{{ $search->full_name }}</a>
-                                        </h4>
-                                        <span class="text-muted">{{ __('personal/gender.' . $search->joint->doctor->gender) }}</span>
-                                        <p>{{ $search->joint->doctor->phone }}</p>
-                                        <p>{{ $search->specialty->specialty }}</p>
+                                    <div class="col-sm-4 pl-0 pl-sm-15">
+                                        <div class="event-details p-15 mt-20">
+                                            <h4 class="media-heading text-uppercase font-weight-500">
+                                                <a href="{{ route('doctor.show',['doctor' => $search->joint->doctor]) }}">{{ $search->full_name }}</a>
+                                            </h4>
+                                            <span class="text-muted">{{ __('personal/gender.' . $search->joint->doctor->gender) }}</span>
+                                            <p>{{ $search->joint->doctor->phone }}</p>
+                                            <p>{{ $search->specialty->specialty }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="event-count p-15 mt-15">
-                                        <ul>
-                                            <li class="text-theme-colored"><i class="fa fa-calendar mr-5"></i>
-                                                {{ \Carbon\Carbon::parse($search->joint->doctor->created_at)->format('d - m - y') }}
-                                            </li>
-                                            <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>
-                                                {{ $search->joint->doctor->address->full_address }}
-                                            </li>
-                                        </ul>
+                                    <div class="col-sm-4">
+                                        <div class="event-count p-15 mt-15">
+                                            <ul>
+                                                <li class="text-theme-colored"><i class="fa fa-calendar mr-5"></i>
+                                                    {{ \Carbon\Carbon::parse($search->joint->doctor->created_at)->format('d - m - y') }}
+                                                </li>
+                                                <li class="text-theme-colored"><i class="fa fa-map-marker mr-5"></i>
+                                                    {{ $search->joint->doctor->address->full_address }}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-        @else
+        </section>
+    @else
         pas de result
     @endif
 @stop

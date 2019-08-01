@@ -15,7 +15,7 @@ class CreateAppointmentsTable extends Migration
             $table->bigIncrements('id');
 
             $table->dateTime('season');
-            $table->dateTime('season')->nullable();
+            $table->dateTime('passed')->nullable();
 
             $table->unsignedBigInteger('user_id')
                 ->index()

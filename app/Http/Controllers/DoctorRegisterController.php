@@ -7,7 +7,7 @@ use App\Doctor;
 use App\Http\Requests\Presence\DoctorRegisterRequest;
 use App\Http\Requests\Presence\StoreRequest;
 use App\Notifications\Presence\ActivateNotification;
-use App\Token;
+use App\Repository\DoctorRepository;
 
 class DoctorRegisterController extends Controller
 {
@@ -70,34 +70,15 @@ class DoctorRegisterController extends Controller
         return view('presence.register',compact('token','doctor'));
     }
 
-    public function register(DoctorRegisterRequest $request, Doctor $doctor)
+    public function register(DoctorRegisterRequest $request, Doctor $doctor,DoctorRepository $repository)
     {
-       // dd($doctor->user->getRememberToken());
+
         if($doctor->user->getRememberToken() != $request->token){
             session()->flash('warning', 'votre jeton de permission est invalide veuillez cliker sur le mail');
             return back();
         }
 
-        $doctor->user->update([
-            'password'  => bcrypt($request->password)
-        ]);
-
-        $doctor->user->real()->create([
-            'last_name'     => $doctor->last_name,
-            'first_name'    => $doctor->first_name,
-            'gender'        => $request->gender,
-            'birth'         => $request->birth,
-        ]);
-
-        $doctor->user->form()->create([
-            'last_name'     => $doctor->last_name,
-            'first_name'    => $doctor->first_name,
-            'gender'        => $request->gender,
-            'birth'         => $request->birth,
-            'mobile'        => $request->mobile,
-            'creator_id'    => $doctor->user->creator_id
-        ]);
-
+        $repository->register($request,$doctor);
 
         session()->flash('success', 'Votre Compte a bien été créer veuillez vous conécté');
 

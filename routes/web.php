@@ -3,6 +3,20 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
+// app
+
+Route::get('conditions',function (){
+    return view('layouts.conditions');
+})->name('conditions');
+
+Route::get('packs',function (){
+    return view('layouts.packs');
+});
+
+Route::get('qsn',function (){
+    return view('layouts.qsn');
+});
+
 // Authentication
 
 Auth::routes(['verify' => true]);
@@ -120,5 +134,8 @@ Route::namespace('Appointment')->group(function (){
     Route::resource('appointment','AppointmentController')->except(['create','store']);
     Route::get('appointment/{appointment}/passed','AppointmentController@passed')->name('appointment.passed');
 
+    Route::post('/availability/appointment','AppointmentController@appointment');
+    Route::middleware('auth')
+        ->post('/availability/appointment/store','AppointmentController@store')
+        ->name('appointment.post');
 });
-

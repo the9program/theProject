@@ -89,4 +89,83 @@
             </div>
         </div>
     </section>
+
+    @if(isset($availabilities[0]))
+        <!-- Divider: Appoinment Form -->
+        <section data-bg-img="{{ asset('images/pattern/p4.png') }}">
+            <div class="container pt-50 pb-0">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="p-10">
+                            <!-- Reservation Form Start-->
+                            <form id="reservation_form" name="reservation_form" class="reservation-form" method="post"
+                                  action="{{ route('appointment.post') }}">
+                                @csrf
+                                <h2 class="mt-0 line-bottom line-height-1 text-black mb-30">Make An Appoinment<span
+                                            class="text-theme-colored font-weight-600"> Now!</span></h2>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-30">
+                                            <div class="styled-select">
+                                                <select id="availability" name="availability" class="form-control"
+                                                        required="">
+                                                    <option value disabled selected>- Select DATE -</option>
+                                                    @foreach($availabilities as $availability)
+                                                        <option value="{{ $availability }}">{{ $availability }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="styled-select pt-15" id="ap">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="form-group mb-0 mt-0">
+                                            <input name="form_botcheck" class="form-control" type="hidden" value="">
+                                            <button type="submit" class="btn btn-theme-colored btn-lg btn-block"
+                                                    data-loading-text="Please wait...">Submit Now
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Reservation Form End-->
+                            <script>
+                                $(document).ready(function () {
+                                    $('body').on('change', '#availability', function () {
+                                        var availability = $(this).val();
+                                        var _token = $("meta[name=csrf-token]").attr('content');
+
+                                        $.ajax({
+                                            url: "/availability/appointment",
+                                            type: 'POST',
+                                            data: {availability: availability, _token: _token},
+                                            datatype: 'json',
+                                            success: function (data) {
+                                                $('#ap').html(data)
+                                                console.log('success')
+                                            },
+                                            error: function (data) {
+                                                console.log('lkjl')
+                                            },
+                                            beforeSend: function (data) {
+
+                                            },
+                                            complete: function (data) {
+                                                console.log('5454');
+                                            }
+                                        })
+                                    });
+                                })
+                            </script>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ asset('images/about/4.png') }}" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 @stop

@@ -24,6 +24,7 @@ class AppointmentController extends Controller
     {
 
         $this->authorize('availability',Availability::class);
+
         $form = $this->form($request);
 
         $appointment->update([
@@ -31,7 +32,9 @@ class AppointmentController extends Controller
             'user_id'   => $form->user_id
         ]);
 
-        return redirect()->route('availability.show',['availability' => $appointment->availability]);
+        return redirect()->route('availability.show',[
+            'availability' => $appointment->availability
+        ]);
 
     }
 
@@ -59,4 +62,30 @@ class AppointmentController extends Controller
         return back();
 
     }
+
+    public function appointment(Request $request)
+    {
+        $availabilities = Availability::whereDate('from',$request->availability)->get();
+        $appointments = [];
+        foreach ($availabilities as $availability) {
+            $appointments[] = $availability->appointments;
+        }
+
+        return view('appointment.appointment',compact('appointments'));
+
+    }
+
+    public function store(Request $request)
+    {
+        $appointment = Appointment::find($request->appointment);
+        $form = (isset(auth()->user()->form->id)) ? auth()->user()->form->id : null;
+
+        $appointment->update([
+            'user_id'   => 1,
+            'form_id'   => $form
+        ]);
+        session()->flash('success','Votre RDV est bien Pris');
+        return back();
+    }
+
 }
