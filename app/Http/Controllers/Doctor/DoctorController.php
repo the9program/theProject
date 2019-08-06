@@ -55,19 +55,25 @@ class DoctorController extends Controller
 
     public function show(Doctor $doctor)
     {
-        $av = $doctor->joint->availabilities()->where('from','>',now())
-            ->orderBy('from','asc')
-            ->get();
+
         $availabilities = [];
-        foreach ($av as $availability) {
+        if ($doctor->premium){
 
-            if (!in_array(Carbon::parse($availability->from)->format('Y-m-d'),$availabilities)) {
+            $av = $doctor->joint->availabilities()->where('from','>',now())
+                ->orderBy('from','asc')
+                ->get();
 
-                $availabilities[] = Carbon::parse($availability->from)->format('Y-m-d');
+            foreach ($av as $availability) {
+
+                if (!in_array(Carbon::parse($availability->from)->format('Y-m-d'),$availabilities)) {
+
+                    $availabilities[] = Carbon::parse($availability->from)->format('Y-m-d');
+
+                }
 
             }
-
         }
+
 
         return view('doctor.show', compact('doctor','availabilities'));
 
@@ -109,7 +115,7 @@ class DoctorController extends Controller
     public function destroy(Doctor $doctor)
     {
 
-        $this->authorize('update',$doctor);
+        $this->authorize('delete',$doctor);
 
         $doctor->joint->search()->delete();
 

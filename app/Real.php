@@ -50,4 +50,16 @@ class Real extends Model
         return strtoupper($this->last_name)  . ' ' . ucfirst($this->first_name);
     }
 
+    public function getDefaultAddressAttribute()
+    {
+        $address =  $this->addresses()->where('default',true)->first();
+        return ($address) ? $address->full_address : null;
+    }
+
+    public function getDefaultMobileAttribute()
+    {
+        $mobile =  $this->phones()->where('default',true)->first();
+        return ($mobile) ? $mobile->phone : null;
+    }
+
 }

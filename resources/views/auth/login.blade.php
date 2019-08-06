@@ -147,9 +147,7 @@
 
                         </div>
                         <div class="row">
-                            <p>En S'inscrivant dans notre Système vous afirmé que vous accèpté nos <a
-                                        href="{{ route('conditions') }}" class="text-primary">Conditions d'utilistations</a>
-                            </p>
+                            <p>{!! __('personal/login.conditions') !!}</p>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-dark btn-lg btn-block mt-15"

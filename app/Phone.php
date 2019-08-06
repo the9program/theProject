@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * @property int $id
@@ -17,11 +18,17 @@ use Illuminate\Database\Eloquent\Model;
 class Phone extends Model
 {
 
-    protected $fillable = ['default', 'phone', 'real_id'];
+    use Notifiable;
+
+    protected $fillable = ['default', 'phone','verified', 'real_id'];
 
     public function real()
     {
         return $this->belongsTo(Real::class);
     }
 
+    public function routeNotificationForNexmo($notification)
+    {
+        return $this->phone;
+    }
 }

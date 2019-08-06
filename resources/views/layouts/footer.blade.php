@@ -19,12 +19,9 @@
                 <div class="widget dark">
                     <h5 class="widget-title line-bottom">Pages</h5>
                     <ul class="list list-border">
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Experts</a></li>
-                        <li><a href="#">Gallery</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="/pages/qsn">About Us</a></li>
+                        <li><a href="/pages/service">Services</a></li>
+                        <li><a href="/pages/expert">Experts</a></li>
                     </ul>
                 </div>
             </div>
@@ -32,12 +29,11 @@
                 <div class="widget dark">
                     <h5 class="widget-title line-bottom">Quick Links</h5>
                     <ul class="list-border list theme-colored angle-double-right">
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Donor Privacy Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
-                        <li><a href="#">Terms of Use</a></li>
-                        <li><a href="#">Copyright Notice</a></li>
-                        <li><a href="#">Media Center</a></li>
+                        <li><a href="/pages/packs">Packs</a></li>
+                        <li><a href="/pages/policy">Privacy Policy</a></li>
+                        <li><a href="/pages/term">Terms of Use</a></li>
+                        <li><a href="/pages/contract">Contract</a></li>
+                        <li><a href="/pages/copyright">Copyright Notice</a></li>
                     </ul>
                 </div>
             </div>

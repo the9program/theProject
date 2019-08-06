@@ -5,6 +5,7 @@
     <section class="divider">
         <div class="container">
             <div class="row">
+
                 <div class="col-md-12">
                     <div class="border-1px p-30 mb-0">
                         <h3 class="text-theme-colored mt-0 pt-5">{{ __('personal/security.update_psw') }}</h3>

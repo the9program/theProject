@@ -29,6 +29,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property Availability $availability
  * @property Form $form
  * @property Form $forms_created
+ * @property Appointment $appointments
+ * @property Joint $joint
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -73,6 +75,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Doctor::class,'creator_id');
     }
 
+    public function joint()
+    {
+        return $this->hasOne(Joint::class,'assistant_id');
+    }
     public function availability()
     {
         return $this->hasMany(Availability::class);
@@ -86,6 +92,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function forms_created()
     {
         return $this->hasMany(Form::class,'creator_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 
 

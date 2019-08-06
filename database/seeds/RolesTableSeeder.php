@@ -11,7 +11,7 @@ class RolesTableSeeder extends Seeder
 
         $roles = [
             'potential_doctor_list', 'potential_doctor_create', 'potential_doctor_update',
-            'presence_create'
+            'presence_create', 'doctor_delete', 'premium', 'admin',
         ];
 
         foreach ($roles as $role) {
@@ -20,7 +20,23 @@ class RolesTableSeeder extends Seeder
                 'role'  => $role
             ]);
 
-            $role->categories()->attach([1,2,3,4]);
+            if($role === 'doctor_delete'){
+
+                $role->categories()->attach([1]);
+
+            }
+
+            elseif($role === 'admin'){
+
+                $role->categories()->attach([1,2,3]);
+
+            }
+
+            else{
+
+                $role->categories()->attach([1,2,3,4]);
+
+            }
 
         }
     }

@@ -15,7 +15,10 @@ class RegisterDoctorSeeder extends Seeder
             'category_id'       => 5,
             'creator_id'        => auth()->id()
         ]);
-        $doctor->update(['user_id' => $user->id]);
+        $doctor->update([
+            'user_id' => $user->id,
+            'premium'   => true
+        ]);
 
         $doctor->user->real()->create([
             'last_name'     => $doctor->last_name,

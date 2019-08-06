@@ -23,10 +23,13 @@ class DoctorRegisterController extends Controller
 
     }
 
-    public function create()
+    public function create(Doctor $doctor)
     {
         $this->authorize('presence',Doctor::class);
-
+        if(isset($doctor->user->real)){
+            session()->flash('warning','Ce docteur a déjà un compte');
+            return redirect()->route('doctor.show',compact('doctor'));
+        }
         return view('presence.create');
 
     }
@@ -35,6 +38,7 @@ class DoctorRegisterController extends Controller
     {
 
         $this->authorize('presence',Doctor::class);
+
         if($user = $doctor->user){
 
             $user->notify( new ActivateNotification($user->getRememberToken(), $doctor));

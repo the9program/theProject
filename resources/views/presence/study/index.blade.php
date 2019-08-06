@@ -4,6 +4,13 @@
         <div class="container pt-80 pb-60">
             <div class="section-content">
                 <div class="row">
+                    <div class="row mb-30">
+                        <div class="col-xs-12 text-right">
+                            <a href="{{ route('study.create') }}"
+                               class="btn btn-border hvr-bounce-to-right btn-theme-colored"
+                            >{{ __('validation.attributes.create') }}</a>
+                        </div>
+                    </div>
                     <div class="col-md-12">
                         <table class="table table-striped table-schedule">
                             <thead>

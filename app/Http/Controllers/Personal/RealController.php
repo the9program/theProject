@@ -10,8 +10,12 @@ class RealController extends Controller
 
     public function profile()
     {
+        $appointments = auth()->user()->appointments()->get();
 
-        return view('real.profile',['user' => auth()->user()]);
+        return view('real.profile',[
+            'user' => auth()->user(),
+            'appointments' => $appointments
+        ]);
 
     }
 }

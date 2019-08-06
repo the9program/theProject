@@ -13,30 +13,96 @@ class AssistantController extends Controller
     public function create()
     {
 
-        return view('presence.assistant.create');
+        if (!auth()->user()->doctor->joint->assistant) {
+
+            return view('presence.assistant.create');
+
+        }
+
+        else {
+
+            return redirect()->route('assistant.show', [
+
+                'assistant' => auth()->user()->doctor->joint->assistant_id
+
+            ]);
+
+        }
 
     }
 
     public function store(AssistantRequest $request)
     {
 
-        $user = User::where('email',$request->email)->first();
+        if (!auth()->user()->doctor->joint->assistant_id) {
 
-        $request->request->add(['creator_id' => auth()->id()]);
+            $user = User::where('email', $request->email)->first();
 
-        $user->form()->create($request->all([
-            'last_name', 'first_name', 'gender', 'birth', 'creator_id', 'mobile'
-        ]));
+            $request->request->add(['creator_id' => auth()->id()]);
 
-        auth()->user()->doctor->joint->update([
-            'assistant_id'  => $user->id
+            if (!$user->form) {
+
+                $user->form()->create($request->all([
+                    'last_name', 'first_name', 'gender', 'birth', 'creator_id', 'mobile'
+                ]));
+
+            }
+
+            auth()->user()->doctor->joint->update([
+                'assistant_id' => $user->id
+            ]);
+
+            $user->update(['category_id' => 6]);
+
+            session()->flash('success', 'un compte assistant  bien été joint');
+
+        }
+        else {
+
+            session()->flash('warning', 'Vous avez déja un(e) assistant(e)');
+
+        }
+
+        return redirect()->route('assistant.show', [
+            'assistant' => auth()->user()->doctor->joint->assistant_id
         ]);
 
-        $user->update(['category_id' => 6]);
+    }
 
-        session()->flash('success','un compte assistant  bien été joint');
+    public function show(User $assistant)
+    {
 
-        return back();
+        if (auth()->user()->doctor->joint->assistant_id === $assistant->id) {
+
+            return view('presence.assistant.show', compact('assistant'));
+
+        }
+
+        return abort(404);
+
+    }
+
+    public function destroy(User $assistant)
+    {
+
+        if (auth()->user()->doctor->joint->assistant_id === $assistant->id) {
+
+            $assistant->update([
+                'category_id' => null
+            ]);
+
+            auth()->user()->doctor->joint->update([
+                'assistant_id' => null
+            ]);
+
+            session()->flash('success', 'Compte assistant détaché');
+
+            return redirect()->route('assistant.create');
+
+        }
+
+        return abort(404);
+
     }
 
 }

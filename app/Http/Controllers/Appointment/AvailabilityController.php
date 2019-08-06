@@ -50,7 +50,7 @@ class AvailabilityController extends Controller
 
             $calendar .= "url: '". route('availability.show',compact('available')) . "',";
 
-            $calendar .= "start: '" . Carbon::parse($available->from)->format('Y-m-d') . "T". Carbon::parse($available->from)->format('H:i:s') ."'";
+            $calendar .= "start: '" . Carbon::parse($available->from)->format('Y-m-d') . "T". Carbon::parse($available->from)->format('H:i:s') ."',";
 
             $calendar .= "},";
 
@@ -104,8 +104,11 @@ class AvailabilityController extends Controller
 
     private function appointment(Availability $availability)
     {
+
         $seance = $availability->from;
+
         while ($seance <= $availability->to){
+
             $availability->appointments()->create([
                 'season' => $seance
             ]);
@@ -113,21 +116,31 @@ class AvailabilityController extends Controller
             $seance = Carbon::parse($seance)
                 ->addMinutes(15)
                 ->format('Y-m-d H:i:s');
+
         }
+
     }
 
     private function joint()
     {
+
         if($joint = auth()->user()->joint) {
+
             return $joint;
+
         }
+
         return auth()->user()->doctor->joint;
+
     }
 
     private function availability($request,$joint_id)
     {
+
         $from = Carbon::parse($request->day . ' ' . $request->from)->format('Y-m-d H:i:s');
+
         $to = Carbon::parse($request->day . ' ' . $request->to)->format('Y-m-d H:i:s');
+
         return Availability::where(function ($q) use ($request,$joint_id,$from,$to){
             $q->where([
                 ['joint_id', $joint_id]
@@ -149,5 +162,6 @@ class AvailabilityController extends Controller
                     ]);
             });
         })->first();
+
     }
 }

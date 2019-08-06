@@ -25,6 +25,11 @@ class Form extends Model
         'last_name', 'first_name', 'gender', 'birth', 'mobile', 'user_id', 'creator_id'
     ];
 
+    public function getFullNameAttribute()
+    {
+        return strtoupper($this->last_name) . ' ' . ucfirst($this->first_name);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

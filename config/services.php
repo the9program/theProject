@@ -43,5 +43,10 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+    'nexmo' => [
+        'key' => env('2b060b51'),
+        'secret' => env('B7mGZub6vaTLT2Ig'),
+        'sms_from' => env('APP_NAME'),
+    ],
 
 ];

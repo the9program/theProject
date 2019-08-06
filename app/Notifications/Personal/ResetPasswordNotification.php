@@ -33,10 +33,10 @@ class ResetPasswordNotification extends Notification
         return (new MailMessage)
             ->subject("Récuperation du Mot de passe")
             ->greeting("Bonjour")
-            ->line("Suite a votre demande de reinitialisation du mot de passe de votre compte Tabibis")
+            ->line("Suite a votre demande de reinitialisation du mot de passe de votre compte " . env('APP_NAME'))
             ->action("Modifié mon mot de passe", route('password.reset',['token' => $this->token]))
             ->line("Ce message vous a été envoyer suite a une tentative de Récuperation du Mot de passe!")
             ->salutation("Cordialement")
-            ->salutation('LY');
+            ->salutation(env('APP_NAME'));
     }
 }

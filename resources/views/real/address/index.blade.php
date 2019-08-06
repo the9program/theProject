@@ -12,7 +12,7 @@
                         <div class="col-xs-12">
                             <div class="col-xs-12 text-right">
                                 <button class="btn btn-border hvr-bounce-to-right btn-theme-colored">
-                                    <a href="{{ route('address.create') }}"><strong>{{ __('validation.attributes.create') }}</strong></a>
+                                    <a href="{{ route('address.create') }}"><strong>{{ __('personal/address.add') }}</strong></a>
                                 </button>
                             </div>
                         </div>
@@ -21,7 +21,7 @@
                         <table class="table table-hover">
                             <tr>
                                 <th class="text-center">{{ __("validation.attributes.address") }}</th>
-                                <th class="text-center" colspan="2">action</th>
+                                <th class="text-center" colspan="2">{{ __('validation.attributes.action') }}</th>
                             </tr>
                             @if(isset($addresses[0]))
                                 @foreach($addresses as $address)
@@ -51,7 +51,7 @@
                                 @else
 
                                 <tr class="warning">
-                                    <td class="text-center" colspan="2">Vous n'avez aucun address</td>
+                                    <td class="text-center" colspan="2">{{ __('personal/address.empty') }}</td>
                                 </tr>
                             @endif
                         </table>

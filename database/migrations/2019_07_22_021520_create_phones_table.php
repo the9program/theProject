@@ -16,6 +16,7 @@ class CreatePhonesTable extends Migration
 
             $table->boolean('default')->default(false);
             $table->string('phone');
+            $table->string('verified')->nullable();
 
             $table->unsignedBigInteger('real_id')->index();
             $table->foreign('real_id')

@@ -104,4 +104,168 @@
         </div>
     </section>
 
+    <!-- Section: team -->
+    <section id="team">
+        <div class="container">
+            <div class="section-title text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-uppercase mt-0 line-height-1">Our Doctors</h2>
+                        <div class="title-icon">
+                            <img class="mb-10" src="{{ asset('images/title-icon.png') }}" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mtli-row-clearfix">
+                <div class="col-md-12">
+                    <div class="owl-carousel-4col">
+                        @foreach($list_doctors as $doctor)
+                            <div class="item">
+                                <div class="team-members border-bottom-theme-color-2px text-center maxwidth400">
+                                    <div class="team-thumb">
+                                        <img class="img-fullwidth" alt="" src="{{ asset('images/team/lg6.jpg') }}">
+                                        <div class="team-overlay"></div>
+                                    </div>
+                                    <div class="team-details bg-silver-light pt-10 pb-10">
+                                        <h4 class="text-uppercase font-weight-600 m-5">
+                                            <a href="{{ route('doctor.show',['doctor' => $doctor->doctor]) }}">{{ $doctor->doctor->full_name }}</a>
+                                        </h4>
+                                        <h6 class="text-theme-colored font-15 font-weight-400 mt-0">{{ $doctor->doctor->specialty->specialty }}</h6>
+                                        <h6 class="text-theme-colored font-15 font-weight-300 mt-0">{{ $doctor->doctor->phone }}</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: Services -->
+    <section class=" bg-lighter">
+        <div class="container pb-20">
+            <div class="section-title text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h2 class="text-uppercase mt-0 line-height-1">Services</h2>
+                        <div class="title-icon">
+                            <img class="mb-10" src="images/title-icon.png" alt="">
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem obcaecati!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="section-content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-ambulance14 text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Emergency Care</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-illness text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Operation Theatre</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-stethoscope10 text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Outdoor Checkup</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-medical51 text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Cancer Service</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-hospital35 text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Blood Test</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-4">
+                        <div class="icon-box left media p-0"><a href="#" class="media-left pull-left"><i
+                                        class="flaticon-medical-tablets9 text-theme-colored"></i></a>
+                            <div class="media-body">
+                                <h5 class="media-heading heading">Pharmacy</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum consectetur sit ullam
+                                    perspiciatis, deserunt.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section: team -->
+    @if(isset($list_clinics[0]))
+        <section id="team">
+            <div class="container">
+                <div class="section-title text-center">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h2 class="text-uppercase mt-0 line-height-1">Our Clinics</h2>
+                            <div class="title-icon">
+                                <img class="mb-10" src="{{ asset('images/title-icon.png') }}" alt="">
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem<br> voluptatem
+                                obcaecati!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mtli-row-clearfix">
+                    <div class="col-md-12">
+                        <div class="owl-carousel-4col">
+                            @foreach($list_clinics as $clinical)
+                                <div class="item">
+                                    <div class="team-members border-bottom-theme-color-2px text-center maxwidth400">
+                                        <div class="team-thumb">
+                                            <img class="img-fullwidth" alt="" src="{{ asset('images/team/lg6.jpg') }}">
+                                            <div class="team-overlay"></div>
+                                        </div>
+                                        <div class="team-details bg-silver-light pt-10 pb-10">
+                                            <h4 class="text-uppercase font-weight-600 m-5">{{ $clinical->name }}</h4>
+                                            <h6 class="text-theme-colored font-15 font-weight-400 mt-0">{{ $clinical->address->city }}</h6>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
 @stop

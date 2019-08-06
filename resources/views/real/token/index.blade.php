@@ -44,7 +44,7 @@
                                 @endforeach
                                 @else
                                 <tr class="warning">
-                                    <td class="text-center" colspan="3">Vous n'avez aun jeton</td>
+                                    <td class="text-center" colspan="4">Vous n'avez aun jeton</td>
                                 </tr>
                             @endif
                         </table>

@@ -35,6 +35,8 @@ class CreateDoctorsTable extends Migration
             $table->string('first_name');
             $table->string('phone');
             $table->unsignedBigInteger('visit')->default(0);
+            $table->boolean('premium')->default(0);
+            $table->longText('speech')->nullable();
 
             $table->unsignedBigInteger('specialty_id')->index();
             $table->foreign('specialty_id')

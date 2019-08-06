@@ -50,7 +50,7 @@ class DoctorPolicy
         if(isset($user->category->roles[0])){
             $role = $user->category
                 ->roles()
-                ->where('role','potential_doctor_create')
+                ->where('role','potential_doctor_update')
                 ->first();
 
             return ((!$doctor->user_id) && ($role)) ;
@@ -68,6 +68,38 @@ class DoctorPolicy
             return $user->category
                 ->roles()
                 ->where('role','presence_create')
+                ->first();
+
+        }
+
+        return false;
+
+    }
+
+    public function delete(User $user,Doctor $doctor)
+    {
+
+        if(isset($user->category->roles[0])){
+
+            return $user->category
+                ->roles()
+                ->where('role','doctor_delete')
+                ->first();
+
+        }
+
+        return false;
+
+    }
+
+    public function premium(User $user,Doctor $doctor)
+    {
+
+        if(isset($user->category->roles[0])){
+
+            return $user->category
+                ->roles()
+                ->where('role','premium')
                 ->first();
 
         }

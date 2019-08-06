@@ -16,12 +16,29 @@
                             <li><a href="{{ route('params') }}">{{ __('personal/real.real') }}</a></li>
                             <li><a href="{{ route('address.index') }}">{{ __('personal/address.address') }}</a></li>
                             <li><a href="{{ route('phone.index') }}">{{ __('validation.attributes.mobile') }}</a></li>
+                            @if(auth()->user()->form)
+                                <li><a href="{{ route('form') }}">Form</a>
+                                </li>
+                            @endif
                             @can('token',\App\Token::class)
                                 <li><a href="{{ route('token.index') }}">{{ __('personal/token.tokens') }}</a></li>
+                            @endcan
+                            @can('admin',\App\Token::class)
+                                <li><a href="{{ route('admin.index') }}">list Admins</a></li>
                             @endcan
                             @can('create',\App\Doctor::class)
                                 <li><a href="{{ route('doctor.index') }}">{{ __('directory/doctor.doctors') }}</a></li>
                             @endcan
+                            @if(auth()->user()->category_id === 5 ||auth()->user()->category_id  === 6)
+                                <li><a href="{{ route('availability.index') }}">Calendar</a>
+                            @endif
+                            @if(auth()->user()->category_id === 5)
+                                <li><a href="{{ route('languages.create') }}">languages</a></li>
+                                <li><a href="{{ route('study.index') }}">study</a></li>
+                                <li><a href="{{ route('experience.index') }}">experience</a></li>
+                                <li><a href="{{ route('assistant.create') }}">Assistant</a></li>
+                                <li><a href="{{ route('speech',['doctor' => auth()->user()->doctor]) }}">Speech</a></li>
+                            @endif
 
                         @endif
                     </ul>

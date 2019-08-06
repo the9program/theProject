@@ -5,16 +5,22 @@ use Illuminate\Support\Facades\Route;
 
 // app
 
-Route::get('conditions',function (){
-    return view('layouts.conditions');
-})->name('conditions');
+Route::get('pages/{name}',function ($name){
+    if(
+        $name === 'conditions'
+        || $name === 'packs'
+        || $name === 'qsn'
+        || $name === 'service'
+        || $name === 'expert'
+        || $name === 'policy'
+        || $name === 'contract'
+        || $name === 'copyright'
+        || $name === 'term'
+    ){
+        return view('pages.' . $name);
+    }
 
-Route::get('packs',function (){
-    return view('layouts.packs');
-});
-
-Route::get('qsn',function (){
-    return view('layouts.qsn');
+    return abort(404);
 });
 
 // Authentication
@@ -73,8 +79,30 @@ Route::namespace('Personal')
 
         Route::get('profile','RealController@profile')->name('profile');
 
+        // Admin
 
+        Route::resource('admin','AdminController')->only(['index','show']);
+        // sms verified
+
+        Route::resource('verified','VerifiedController')->only(['edit','update']);
     });
+
+// Form
+
+Route::get('form',function (){
+
+    if(auth()->user()->form){
+
+        $form = auth()->user()->form;
+        $age = date_diff(date_create($form->birth), now())->y;
+        return view('form.show',compact('form','age'));
+
+    }
+
+    return abort(404);
+
+})->middleware('auth')
+    ->name('form');
 
 // Token
 
@@ -103,30 +131,48 @@ Route::get('register/{doctor}/{token}','DoctorRegisterController@registerForm')-
 Route::post('register/{doctor}','DoctorRegisterController@register')->name('presence.register');
 
 Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
+
     // language
 
     Route::resource('languages','LanguageController')
         ->only(['create', 'store']);
 
-    // experience and study
+    // study
 
     Route::middleware(['doctor','doctor_language'])
         ->resource('study','StudyController')
         ->except(['show']);
 
+    // experience
+
     Route::middleware(['doctor','doctor_language','study'])
         ->resource('experience','ExperienceController')
         ->except(['show']);
 
-    Route::resource('assistant','AssistantController')
-        ->only(['create','store']);
+    // assistant
+
+    Route::middleware(['doctor','doctor_language','study'])
+        ->resource('assistant','AssistantController')
+        ->except(['edit', 'update', 'index']);
+
+    // speech
+
+    Route::middleware(['doctor','doctor_language','study'])
+        ->get('speech/{doctor}','SpeechController@speech')
+        ->name('speech');
+
+    Route::middleware(['doctor','doctor_language','study'])
+        ->put('speech/{doctor}','SpeechController@update')
+        ->name('speech.update');
 
 });
 
 Route::namespace('Appointment')->group(function (){
+
     // availability
 
-    Route::middleware('auth')->resource('availability','AvailabilityController')
+    Route::middleware('auth')
+        ->resource('availability','AvailabilityController')
         ->only(['index', 'create', 'store', 'show']);
 
     // appointment
@@ -138,4 +184,15 @@ Route::namespace('Appointment')->group(function (){
     Route::middleware('auth')
         ->post('/availability/appointment/store','AppointmentController@store')
         ->name('appointment.post');
+
+    // premium
+
+    Route::middleware('auth')
+        ->post('activate/{doctor}','AppointmentController@activate')
+        ->name('appointment.activate');
+
+    Route::middleware('auth')
+        ->post('inactivate/{doctor}','AppointmentController@inactivate')
+        ->name('appointment.inactivate');
+
 });

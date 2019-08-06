@@ -19,7 +19,7 @@ class AssistantRequest extends FormRequest
     public function rules()
     {
         return [
-            'email'         => ['required', 'string', 'email', 'max:255', 'exists:users,email', new EmailAssistantRule()],
+            'email'         => ['bail', 'required', 'string', 'email', 'max:255', 'exists:users,email', new EmailAssistantRule()],
             'last_name'     => ['required', 'string', 'min:3', 'max:8'],
             'first_name'    => ['required', 'string', 'min:3', 'max:8'],
             'gender'        => ['required', 'int', new GenderRule()],

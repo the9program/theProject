@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Availability;
+use App\Clinical;
 use App\Doctor;
 use App\Joint;
 use App\Search;
@@ -17,21 +18,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        /*
-        $availabilities = Availability::all();
-        $av = [];
-        foreach ($availabilities as $availability) {
 
-            if (!in_array(Carbon::parse($availability->from)->format('Y-m-d'),$av)) {
-
-                $av[] = Carbon::parse($availability->from)->format('Y-m-d');
-
-            }
-
-        }
-
-        dd($av);
-*/
         return view('welcome',[
             'users'         => User::all()->count(),
             'doctors'       => Doctor::all()->count(),
@@ -41,7 +28,17 @@ class HomeController extends Controller
                 ->distinct()
                 ->get(),
             'cities'        => Search::with(['city'])->distinct()
+                ->get(),
+            'list_doctors'  => User::where('category_id',5)
+                ->limit(5)
+                ->with(['doctor'])
+                ->orderBy('created_at', 'desc')
+                ->get(),
+            'list_clinics'  => Clinical::limit(5)
+                ->orderBy('created_at', 'desc')
+                ->with(['address','city'])
                 ->get()
         ]);
+
     }
 }

@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $last_name
  * @property int $first_name
+ * @property string $phone
+ * @property int $visit
+ * @property boolean $premium
+ * @property string $speech
  * @property int $specialty_id
  * @property int $address_id
  * @property int $creator_id
@@ -28,7 +32,7 @@ class Doctor extends Model
 {
     protected $fillable = [
         'last_name', 'first_name', 'phone',
-        'visit', 'specialty_id', 'address_id',
+        'visit', 'premium', 'speech', 'specialty_id', 'address_id',
         'opening_id' ,'creator_id', 'user_id',
     ];
 
