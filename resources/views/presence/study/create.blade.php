@@ -7,12 +7,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="border-1px p-30 mb-0">
-                        <h3 class="text-theme-colored mt-0 pt-5">{{ __('personal/security.update_psw') }}</h3>
+                        <h3 class="text-theme-colored mt-0 pt-5">{{ __('presence/study.study') }}</h3>
                         <hr>
-
-                        <blockquote>
-                            <p class="font-13">{{ __('personal/security.blockquote_psw') }}</p>
-                        </blockquote>
                         <form method="POST" action="{{ route('study.store',compact('study')) }}">
                             @csrf
                             <div class="row">
@@ -26,7 +22,7 @@
                                   ])
                                 @include('layouts.input',[
                                       'width' => "col-md-6",
-                                      'label' => ucfirst(__('establishment')) . '* :',
+                                      'label' => ucfirst(__('validation.attributes.faculty')) . '* :',
                                       'type'  => "text",
                                       'name'  => "establishment",
                                       'value' => old('establishment'),
@@ -34,7 +30,7 @@
                                   ])
                                 @include('layouts.input',[
                                       'width' => "col-md-6",
-                                      'label' => ucfirst(__('from')) . '* :',
+                                      'label' => ucfirst(__('validation.attributes.from')) . '* :',
                                       'type'  => "date",
                                       'name'  => "from",
                                       'value' => old('from'),
@@ -42,7 +38,7 @@
                                   ])
                                 @include('layouts.input',[
                                       'width' => "col-md-6",
-                                      'label' => ucfirst(__('to')) . '* :',
+                                      'label' => ucfirst(__('validation.attributes.to')) . '* :',
                                       'type'  => "date",
                                       'name'  => "to",
                                       'value' => old('to'),

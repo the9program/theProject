@@ -23,7 +23,7 @@ class SpeechController extends Controller
             'speech'    => $request->speech
         ]);
 
-        session()->flash('success', 'Speech ajouté');
+        session()->flash('success', __('presence/speech.updated'));
 
         return redirect()->route('doctor.show',compact('doctor'));
 

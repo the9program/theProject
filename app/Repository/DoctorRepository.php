@@ -11,6 +11,7 @@ class DoctorRepository
 {
     public function create(DoctorRequest $request)
     {
+
         $address = Address::create($request->all([
             'address', 'build', 'floor', 'apt_nbr', 'zip', 'city_id'
         ]));

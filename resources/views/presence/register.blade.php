@@ -9,9 +9,6 @@
                         <h3 class="text-theme-colored mt-0 pt-5">{{ __('personal/security.update_psw') }}</h3>
                         <hr>
 
-                        <blockquote>
-                            <p class="font-13">blockquote psw msg</p>
-                        </blockquote>
                         <form method="POST" action="{{ route('presence.register',compact('doctor')) }}">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
@@ -61,10 +58,13 @@
                                   ])
                             </div>
                             <div class="row">
+                                <p>{!! __('personal/login.conditions') !!}</p>
+                            </div>
+                            <div class="row">
                                 <div class="form-group">
                                     <button type="submit"
                                             class="btn btn-border hvr-icon-forward btn-theme-colored col-xs-12">
-                                        <strong>{{ __('validation.attributes.create') }}</strong>
+                                        <strong>{{ __('personal/register.register') }}</strong>
                                     </button>
                                 </div>
                             </div>

@@ -48,11 +48,8 @@
                                                         class="text-gray-lighter">{{ ucfirst(__('validation.attributes.mobile')) }}</strong><br> {{ $admin->real->default_mobile }}
                                             </li>
                                         </ul>
-
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>

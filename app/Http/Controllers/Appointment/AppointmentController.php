@@ -7,15 +7,35 @@ use App\Availability;
 use App\Doctor;
 use App\Form;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Presence\MedicalFormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class AppointmentController extends Controller
 {
+
+    public function show(Availability $availability)
+    {
+        $this->authorize('availability',Availability::class);
+
+        return view('appointment.availability._list',['appointments' => $availability->appointments]);
+
+    }
 
     public function edit(Appointment $appointment)
     {
 
         $this->authorize('availability',Availability::class);
+
+        if($appointment->user_id || $appointment->form_id){
+
+            session()->flash('danger', 'Ce RDV est pris veuillez choisir un autre ou le libéré par le bouton ghost');
+
+            return redirect()->route('availability.show',[
+                'availability'  => $appointment->availability
+            ]);
+
+        }
 
         return view('appointment.edit',compact('appointment'));
 
@@ -62,6 +82,100 @@ class AppointmentController extends Controller
 
         return back();
 
+    }
+
+    public function ghost(Appointment $appointment)
+    {
+        $this->authorize('availability',Availability::class);
+
+        $appointment->update([
+            'user_id'       => null,
+            'form_id'       => null,
+            'passed'        => null,
+            'arrived'       => null,
+        ]);
+
+        return back();
+    }
+
+    public function arrived(Appointment $appointment)
+    {
+        $this->authorize('availability',Availability::class);
+        if($appointment->form_id){
+            $appointment->update([
+                'arrived'   => now()
+            ]);
+            return back();
+        }
+
+       return redirect()->route('form.syn',compact('appointment'));
+
+    }
+
+    public function syncForm(Appointment $appointment)
+    {
+
+        if($appointment->form_id){
+
+            session()->flash('danger','Ce RDV à déja une Fiche Médicale');
+
+            return redirect()->route('availability.show',[
+                'availability'   => $appointment->availability
+            ]);
+
+        }
+
+        return view('appointment.sync',compact('appointment'));
+    }
+
+    public function sync(MedicalFormRequest $request, Appointment $appointment)
+    {
+
+        $request->request->add([
+            'creator_id'    => auth()->id()
+        ]);
+
+        $form = Form::create($request->all([
+            'last_name', 'first_name', 'gender', 'birth', 'mobile','creator_id'
+        ]));
+
+        $appointment->update([
+            'arrived'   => now(),
+            'form_id'   => $form->id,
+        ]);
+
+        return redirect()->route('availability.show',[
+            'availability'   => $appointment->availability
+        ]);
+
+    }
+
+    public function first(Appointment $appointment)
+    {
+        $this->authorize('availability',Availability::class);
+
+        $first = $appointment->availability->appointments()->where([
+            ['passed',null]
+        ])->first();
+
+        $l = [
+            'user_id'   => $first->user_id,
+            'form_id'   => $first->form_id,
+            'passed'    => $first->passed,
+            'arrived'   => $first->arrived
+        ];
+        $f = [
+            'user_id'   => $appointment->user_id,
+            'form_id'   => $appointment->form_id,
+            'passed'    => $appointment->passed,
+            'arrived'   => $appointment->arrived
+        ];
+
+        $appointment->update($l);
+
+        $first->update($f);
+
+        return back();
     }
 
     public function appointment(Request $request)

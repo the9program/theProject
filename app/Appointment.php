@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property Carbon $season
  * @property Carbon $passed
+ * @property Carbon $arrived
  * @property int $user_id
  * @property int $form_id
  * @property int $availability_id
@@ -22,7 +23,7 @@ use Illuminate\Database\Eloquent\Model;
 class Appointment extends Model
 {
     protected $fillable = [
-        'user_id', 'form_id', 'availability_id', 'season', 'passed'
+        'user_id', 'form_id', 'availability_id', 'season', 'passed', 'arrived'
     ];
 
     public function user()

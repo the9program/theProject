@@ -189,13 +189,19 @@ return [
         'send'                  => "Envoyer",
         'token'                 => "jeton",
         'category'              => "Catégorie",
-        'speech'                => "Speech",
         'specialty'             => "Spécialité",
         'created_by'            => "Créé par",
         'appointment_list'      => "Liste des RDV",
         'passed_list'           => "Liste des consultations",
         'season'                => "Passage (heure)",
         'doctor'                => "Docteur",
-        'action'                => "Action"
+        'action'                => "Action",
+        'full_name'             => "Nom et Prénom",
+        'form'                  => "Fiche Médicale",
+        'ans'                   => "ans",
+        'from'                  => 'De',
+        'to'                    => 'à',
+        'faculty'               => "Faculté",
+        'speech'                => "Discours"
     ],
 ];

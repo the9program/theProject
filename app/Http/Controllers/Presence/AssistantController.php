@@ -54,12 +54,12 @@ class AssistantController extends Controller
 
             $user->update(['category_id' => 6]);
 
-            session()->flash('success', 'un compte assistant  bien été joint');
+            session()->flash('success', __('presence/assistant.attached'));
 
         }
         else {
 
-            session()->flash('warning', 'Vous avez déja un(e) assistant(e)');
+            session()->flash('warning', __('presence/assistant.have_assistant'));
 
         }
 
@@ -95,7 +95,7 @@ class AssistantController extends Controller
                 'assistant_id' => null
             ]);
 
-            session()->flash('success', 'Compte assistant détaché');
+            session()->flash('success', __('presence/assistant.detached'));
 
             return redirect()->route('assistant.create');
 

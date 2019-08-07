@@ -24,20 +24,20 @@
                                 <li><a href="{{ route('token.index') }}">{{ __('personal/token.tokens') }}</a></li>
                             @endcan
                             @can('admin',\App\Token::class)
-                                <li><a href="{{ route('admin.index') }}">list Admins</a></li>
+                                <li><a href="{{ route('admin.index') }}">{{ __('personal/admin.admins') }}</a></li>
                             @endcan
                             @can('create',\App\Doctor::class)
                                 <li><a href="{{ route('doctor.index') }}">{{ __('directory/doctor.doctors') }}</a></li>
                             @endcan
+                            @if(auth()->user()->category_id === 5)
+                                <li><a href="{{ route('languages.create') }}">{{ __('presence/language.choice') }}</a></li>
+                                <li><a href="{{ route('study.index') }}">{{ __('presence/study.studies') }}</a></li>
+                                <li><a href="{{ route('experience.index') }}">{{ __('presence/experience.experiences') }}</a></li>
+                                <li><a href="{{ route('speech',['doctor' => auth()->user()->doctor]) }}">{{ __('presence/speech.speeches') }}</a></li>
+                                <li><a href="{{ route('assistant.create') }}">{{ __('presence/assistant.assistants') }}</a></li>
+                            @endif
                             @if(auth()->user()->category_id === 5 ||auth()->user()->category_id  === 6)
                                 <li><a href="{{ route('availability.index') }}">Calendar</a>
-                            @endif
-                            @if(auth()->user()->category_id === 5)
-                                <li><a href="{{ route('languages.create') }}">languages</a></li>
-                                <li><a href="{{ route('study.index') }}">study</a></li>
-                                <li><a href="{{ route('experience.index') }}">experience</a></li>
-                                <li><a href="{{ route('assistant.create') }}">Assistant</a></li>
-                                <li><a href="{{ route('speech',['doctor' => auth()->user()->doctor]) }}">Speech</a></li>
                             @endif
 
                         @endif

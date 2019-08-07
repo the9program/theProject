@@ -9,7 +9,7 @@
             <div class="section-content">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="title text-white">{{ __('personal/real.profile') }}</h2>
+                        <h2 class="title text-white">{{ __('presence/assistant.assistant') }}</h2>
                         <ol class="breadcrumb text-left text-black mt-10">
                             <li><a href="/">{{ __('home') }}</a></li>
                             <li class="active text-gray-silver">{{ $assistant->real->full_name }}</li>
@@ -30,7 +30,7 @@
                            class="btn btn-danger btn-outline-danger"
                            onclick="event.preventDefault();
                                 document.getElementById('detach-assistant').submit();"
-                        >Detach assistant</a>
+                        >{{ __('presence/assistant.detach') }}</a>
                         <form id="detach-assistant"
                               action="{{ route('assistant.destroy',compact('assistant')) }}"
                               method="POST"

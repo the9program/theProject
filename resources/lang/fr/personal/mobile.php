@@ -7,5 +7,6 @@ return [
     'updated_default'       => "Votre numéro de téléphone a bien été mis à jour et marquez comme par défaut",
     'updated'               => "Votre numéro de téléphone a bien été mis à jour",
     'deleted'               => "Le numéro  a bien été Supprimé",
-    'not_deleted'           => "Vous ne pouvez pas Supprimé Votre numéro par défaut"
+    'not_deleted'           => "Vous ne pouvez pas Supprimé Votre numéro par défaut",
+    'add'                   => "Ajouté un nouveau numéro"
 ];

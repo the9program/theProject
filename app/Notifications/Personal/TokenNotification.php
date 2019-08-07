@@ -38,7 +38,7 @@ class TokenNotification extends Notification
             ->action("Inscription", route('token.edit',['token' => $this->token->id]))
             ->line("Ce message vous a été envoyer suite a l'indication de votre adresse de l'un de nos modérateurs")
             ->salutation("Cordialement")
-            ->salutation('LY');
+            ->salutation(env('APP_NAME'));
 
     }
 

@@ -5,11 +5,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4 mb-40">
-                    <h4 class="text-primary title mt-0 pt-5">{{ __('personal/reset.reset') }}</h4>
+                    <h4 class="text-primary title mt-0 pt-5">{{ __('validation.attributes.speech') }}</h4>
                     <hr>
-                    <blockquote>
-                        <p class="font-13">{{ __('personal/email.blockquote') }}</p>
-                    </blockquote>
                     <form method="POST" action="{{ '/speech/1' }}">
                         @csrf
                         @method('PUT')

@@ -9,7 +9,9 @@
                         <div class="col-xs-12">
                             <div class="col-xs-12 text-right">
                                 <button class="btn btn-border hvr-bounce-to-right btn-theme-colored">
-                                    <a href="{{ route('token.create') }}"><strong>{{ __('validation.attributes.create') }}</strong></a>
+                                    <a href="{{ route('token.create') }}">
+                                        <strong>{{ __('personal/token.add') }}</strong>
+                                    </a>
                                 </button>
                             </div>
                         </div>
@@ -20,7 +22,7 @@
                                 <th class="text-center">{{ __("validation.attributes.token") }}</th>
                                 <th class="text-center">{{ __("validation.attributes.email") }}</th>
                                 <th class="text-center">{{ __("validation.attributes.category") }}</th>
-                                <th class="text-center" colspan="2">action</th>
+                                <th class="text-center" colspan="2">{{ __('validation.attributes.action') }}</th>
                             </tr>
                             @if(isset($tokens[0]))
                                 @foreach($tokens as $token)
@@ -44,7 +46,7 @@
                                 @endforeach
                                 @else
                                 <tr class="warning">
-                                    <td class="text-center" colspan="4">Vous n'avez aun jeton</td>
+                                    <td class="text-center" colspan="4">{{ __('personal/token.empty') }}</td>
                                 </tr>
                             @endif
                         </table>

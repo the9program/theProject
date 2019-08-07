@@ -127,8 +127,12 @@ Route::post('search','Directory\SearchController@search')->name('search.post');
 
 Route::get('doctor/{doctor}/create','DoctorRegisterController@create')->name('doctor.register.create');
 Route::post('doctor/{doctor}/create','DoctorRegisterController@store')->name('doctor.register.create');
-Route::get('register/{doctor}/{token}','DoctorRegisterController@registerForm')->name('presence.registerForm');
-Route::post('register/{doctor}','DoctorRegisterController@register')->name('presence.register');
+Route::middleware('guest')
+    ->get('register/{doctor}/{token}','DoctorRegisterController@registerForm')
+    ->name('presence.registerForm');
+Route::middleware('guest')
+    ->post('register/{doctor}','DoctorRegisterController@register')
+    ->name('presence.register');
 
 Route::middleware(['auth', 'doctor'])->namespace('Presence')->group(function (){
 
@@ -177,8 +181,23 @@ Route::namespace('Appointment')->group(function (){
 
     // appointment
 
-    Route::resource('appointment','AppointmentController')->except(['create','store']);
-    Route::get('appointment/{appointment}/passed','AppointmentController@passed')->name('appointment.passed');
+    Route::resource('appointment','AppointmentController')
+        ->except(['create','store']);
+
+    Route::get('availability/appointment/{availability}','AppointmentController@show');
+
+    Route::get('appointment/{appointment}/passed','AppointmentController@passed')
+        ->name('appointment.passed');
+    Route::get('appointment/{appointment}/ghost','AppointmentController@ghost')
+        ->name('appointment.ghost');
+    Route::get('appointment/{appointment}/arrived','AppointmentController@arrived')
+        ->name('appointment.arrived');
+    Route::get('appointment/{appointment}/first','AppointmentController@first')
+        ->name('appointment.first');
+    Route::get('form/{appointment}/sync','AppointmentController@syncForm')
+        ->name('form.syn');
+    Route::post('form/{appointment}/sync','AppointmentController@sync')
+        ->name('form.syn');
 
     Route::post('/availability/appointment','AppointmentController@appointment');
     Route::middleware('auth')

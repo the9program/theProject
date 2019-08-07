@@ -26,10 +26,15 @@ class DoctorRegisterController extends Controller
     public function create(Doctor $doctor)
     {
         $this->authorize('presence',Doctor::class);
+
         if(isset($doctor->user->real)){
-            session()->flash('warning','Ce docteur a déjà un compte');
+
+            session()->flash('warning', __('directory/doctor.doctor_exist'));
+
             return redirect()->route('doctor.show',compact('doctor'));
+
         }
+
         return view('presence.create');
 
     }
@@ -43,7 +48,7 @@ class DoctorRegisterController extends Controller
 
             $user->notify( new ActivateNotification($user->getRememberToken(), $doctor));
 
-            session()->flash('success', 'un email a été renvoyer');
+            session()->flash('success', __('directory/doctor.resended'));
 
             return back();
 
@@ -62,7 +67,7 @@ class DoctorRegisterController extends Controller
 
         $user->notify( new ActivateNotification($token, $doctor));
 
-        session()->flash('success', 'un email a bien été envoyer');
+        session()->flash('success', __('directory/doctor.sended'));
 
         return back();
 
@@ -78,13 +83,13 @@ class DoctorRegisterController extends Controller
     {
 
         if($doctor->user->getRememberToken() != $request->token){
-            session()->flash('warning', 'votre jeton de permission est invalide veuillez cliker sur le mail');
+            session()->flash('warning', '');
             return back();
         }
 
         $repository->register($request,$doctor);
 
-        session()->flash('success', 'Votre Compte a bien été créer veuillez vous conécté');
+        session()->flash('success', __('directory/doctor.account_created'));
 
         return redirect()->route('login');
 

@@ -40,7 +40,7 @@ class ExperienceController extends Controller
             'study', 'title', 'establishment', 'from', 'to', 'doctor_id'
         ]));
 
-        session()->flash('success', 'created');
+        session()->flash('success', __('presence/experience.created'));
         if(is_null($request->to)){
 
             return redirect()->route('experience.index');
@@ -65,7 +65,7 @@ class ExperienceController extends Controller
             'title', 'establishment', 'from', 'to'
         ]));
 
-        session()->flash('success', 'updated');
+        session()->flash('success', __('presence/experience.updated'));
 
         return redirect()->route('experience.index');
 
@@ -76,7 +76,7 @@ class ExperienceController extends Controller
 
         $experience->delete();
 
-        session()->flash('success', 'deleted');
+        session()->flash('success', __('presence/experience.deleted'));
 
         return redirect()->route('experience.index');
 

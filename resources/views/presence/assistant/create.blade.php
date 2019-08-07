@@ -5,12 +5,8 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="border-1px p-30 mb-0">
-                        <h3 class="text-theme-colored mt-0 pt-5">email</h3>
+                        <h3 class="text-theme-colored mt-0 pt-5">{{ __('presence/assistant.assistant') }}</h3>
                         <hr>
-
-                        <blockquote>
-                            <p class="font-13">block quote msg</p>
-                        </blockquote>
                         <form action="{{ route('assistant.store') }}" method="POST">
                             @csrf
                             <div class="row">

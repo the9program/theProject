@@ -48,6 +48,17 @@ class DoctorController extends Controller
 
         $doctor = $repository->create($request);
 
+        if($doctor){
+
+            session()->flash('success',__('directory/doctor.created'));
+
+        }
+
+        else{
+
+            session()->flash('warning',__('directory/doctor.created_error'));
+
+        }
 
         return redirect()->route('doctor.show',compact('doctor'));
 
@@ -108,6 +119,8 @@ class DoctorController extends Controller
             'city_id'           => $request->city_id
         ]);
 
+        session()->flash('success',__('directory/doctor.updated'));
+
         return redirect()->route('doctor.show', compact('doctor'));
 
     }
@@ -122,6 +135,8 @@ class DoctorController extends Controller
         $doctor->joint()->delete();
 
         $doctor->delete();
+
+        session()->flash('success', __('directory/doctor.deleted'));
 
         return redirect()->route('doctor.index');
 

@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('page-title')
 
-@stop
 @section('content')
 
     <section>
@@ -12,7 +10,7 @@
                         <div class="col-xs-12">
                             <div class="col-xs-12 text-right">
                                 <button class="btn btn-border hvr-bounce-to-right btn-theme-colored">
-                                    <a href="{{ route('phone.create') }}"><strong>{{ __('validation.attributes.create') }}</strong></a>
+                                    <a href="{{ route('phone.create') }}"><strong>{{ __('personal/mobile.add') }}</strong></a>
                                 </button>
                             </div>
                         </div>
@@ -21,7 +19,7 @@
                         <table class="table table-hover">
                             <tr>
                                 <th class="text-center">{{ __("validation.attributes.mobile") }}</th>
-                                <th class="text-center" colspan="2">action</th>
+                                <th class="text-center" colspan="2">{{ __('validation.attributes.action') }}</th>
                             </tr>
                             @foreach($mobiles as $phone)
                                 <tr class="{{ ($phone->default) ? 'info' : '' }}">

@@ -111,6 +111,9 @@
                             ])
 
                         </div>
+                        <div class="row">
+                            <p>{!! __('personal/login.conditions') !!}</p>
+                        </div>
                         <div class="form-group">
                             <button class="btn btn-dark btn-lg btn-block mt-15"
                                     type="submit">{{ __('personal/register.register') }}

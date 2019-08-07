@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * @property User $user
  * @property User $creator
+ * @property Appointment $appointments
  */
 class Form extends Model
 {
@@ -38,5 +39,10 @@ class Form extends Model
     public function creator()
     {
         return $this->belongsTo(User::class,'creator_id');
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Form::class);
     }
 }

@@ -167,6 +167,17 @@ body,p,h1,h2,h3,h4,h5,h6{
     border-top-right-radius: 10px !important;
     height: 45px;
 }
+.select2-selection__rendered {
+    line-height: 41px !important;
+    border-radius: 0;
+}
+.select2-container .select2-selection--single {
+    height: 45px !important;
+    border-radius: 0;
+}
+.select2-selection__arrow {
+    height: 45px !important;border-radius: 0;
+}
 
 .stepwizard-step p {
     margin-top: 10px;

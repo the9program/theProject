@@ -14,7 +14,7 @@
                                     <label for="{{ $language->id }}">
                                         <input id="{{ $language->id }}" name="language[{{$language->id}}]"
                                                {{ ($language->doctors()->where('doctors.id',auth()->user()->doctor->id)->first()) ? 'checked' : '' }} type="checkbox">
-                                        {{ $language->language }}
+                                        {{ __('presence/language.' . $language->language) }}
                                     </label>
                                 </div>
                             </div>
@@ -24,7 +24,7 @@
                             <div class="col-xs-12 text-right">
                                 <button type="submit"
                                         class="btn btn-border hvr-bounce-to-right btn-theme-colored">
-                                    <strong>{{ __('validation.attributes.create') }}</strong>
+                                    <strong>{{ __('validation.attributes.update') }}</strong>
                                 </button>
                             </div>
                         </div>

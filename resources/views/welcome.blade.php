@@ -20,13 +20,13 @@
                                 <div class="searching_bar col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
                                     <div class="form-group">
                                         <input type="text" name="doctor" title="doctor" placeholder="Docteur"
-                                               class="font-17 form-control required valid">
+                                               class="font-17 form-control">
                                     </div>
                                 </div>
                                 <div class="searching_bar col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                                    <div class="form-group ">
+                                    <div class="form-group">
                                         <select name="specialty" title="specialty"
-                                                class="font-17 form-control required valid"
+                                                class="font-17 form-control select"
                                         >
                                             <option value="" selected="" disabled="">Specialité</option>
                                             @foreach($specialties as $specialty)
@@ -36,10 +36,9 @@
                                     </div>
                                 </div>
                                 <div class="searching_bar col-sm-3 col-sm-offset-0 col-xs-10 col-xs-offset-1">
-                                    <div class="form-group">
+                                    <div class="form-group ">
                                         <select name="city" id="city" title="city"
-                                                class="font-17 form-control required valid"
-                                        >
+                                                class="font-17 form-control select2-container select" style="min-height: 45px;">
                                             <option value="" selected="" disabled="">Ville</option>
                                             @foreach($cities as $city)
                                                 <option value="{{ $city->city->id }}">{{ $city->city->city }}</option>

@@ -45,9 +45,9 @@ class ActivateNotification extends Notification
                 'token'     => $this->token,
                 'doctor'    => $this->doctor
             ]))
-            ->line("Ce message vous a été envoyer suite a l'indiccation de votre adresse de l'un de nos modérateurs ")
+            ->line("Ce message vous a été envoyer suite a l'indiccation de votre adresse email de l'un de nos modérateurs")
             ->salutation("Cordialement")
-            ->salutation('LY');
+            ->salutation(env('APP_NAME'));
 
     }
 }

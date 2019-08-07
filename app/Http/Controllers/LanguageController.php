@@ -9,9 +9,13 @@ class LanguageController extends Controller
 
     public function changeLanguage(Request $request)
     {
+
         if($request->ajax()){
+
             $request->session()->put('locale',$request->local);
+
         }
+
     }
 
 }

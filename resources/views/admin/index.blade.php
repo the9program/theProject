@@ -12,7 +12,7 @@
                         <h2 class="title">{{ __('directory/doctor.doctors') }}</h2>
                         <ol class="breadcrumb text-center text-black mt-10">
                             <li><a href="#">Home</a></li>
-                            <li class="active text-theme-colored">admins</li>
+                            <li class="active text-theme-colored">{{ __('personal/admin.admins') }}</li>
                         </ol>
                     </div>
                 </div>

@@ -41,7 +41,7 @@ class StudyController extends Controller
             'study', 'title', 'establishment', 'from', 'to', 'doctor_id'
         ]));
 
-        session()->flash('success', 'created');
+        session()->flash('success', __('presence/study.created'));
 
         return redirect()->route('study.create');
 
@@ -61,7 +61,7 @@ class StudyController extends Controller
             'title', 'establishment', 'from', 'to'
         ]));
 
-        session()->flash('success', 'updated');
+        session()->flash('success', __('presence/study.updated'));
 
         return redirect()->route('study.index');
 
@@ -72,7 +72,7 @@ class StudyController extends Controller
 
         $study->delete();
 
-        session()->flash('success', 'deleted');
+        session()->flash('success', __('presence/study.deleted'));
 
         return redirect()->route('study.index');
 
